@@ -2,10 +2,10 @@
   <v-app id="inspire">
     <v-navigation-drawer
       app
-      class="pt-5 indigo"
+      class="pt-5 teal"
     >
       <v-sheet
-        color="indigo"
+        color="teal"
         class="pa-4"
       >
         <v-avatar
@@ -19,9 +19,10 @@
         dark
       >
         <v-list-item
-          v-for="[icon, text] in links"
+          v-for="[icon, text, url] in links"
           :key="icon"
           link
+          :to="url"
         >
           <v-list-item-icon>
             <v-icon>{{ icon }}</v-icon>
@@ -50,10 +51,9 @@ export default {
   data: () => ({
     drawer: null,
     links: [
-      ['mdi-inbox-arrow-down', 'Inbox'],
-      ['mdi-send', 'Send'],
-      ['mdi-delete', 'Trash'],
-      ['mdi-alert-octagon', 'Spam'],
+      ['mdi-home', 'Главная', '/admin'],
+      ['mdi-bookshelf', 'Раздел книги', '/admin/books'],
+      ['mdi-account', 'Пользователи', '/admin/users']
     ],
   }),
 }
