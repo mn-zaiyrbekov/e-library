@@ -2,10 +2,10 @@
   <v-app id="inspire">
     <v-navigation-drawer
       app
-      class="pt-5 teal"
+      class="pt-5 blue darken-4"
     >
       <v-sheet
-        color="teal"
+        color="blue darken-4"
         class="pa-4"
       >
         <v-avatar
@@ -40,6 +40,19 @@
         fluid
       >
        <nuxt />
+        <div class="c-button">
+          <v-btn
+            class="mx-2"
+            fab
+            dark
+            color="indigo"
+            to="admin/books/add"
+          >
+            <v-icon dark>
+              mdi-plus
+            </v-icon>
+          </v-btn>
+        </div>
       </v-container>
     </v-main>
   </v-app>
@@ -60,5 +73,9 @@ export default {
 </script>
 
 <style scoped>
-
+.c-button{
+  position: absolute;
+  right: 5%;
+  bottom: 40px;
+}
 </style>

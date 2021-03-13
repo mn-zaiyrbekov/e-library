@@ -1,5 +1,10 @@
 <template>
-  <EditForm :book="book" :saveBook="saveBook"/>
+  <v-row class="ml-4 pt-5">
+    <v-col class="col-8 md-5">
+      <v-card-title class="pl-0">Редактирование</v-card-title>
+      <EditForm :book="book" :saveBook="saveBook"/>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -9,6 +14,11 @@ import EditForm from '@/components/Forms/Edit'
     name: 'idBooks',
     layout: 'adminLayouts',
     components: {EditForm},
+    head(){
+      return {
+        title: `Редактирование ${this.book.title}`
+      }
+    },
     computed: {
       ...mapGetters({
         getbook: 'books/get'

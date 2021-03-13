@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const { response } = require('express')
 const { Books } = require('../../models/index')
 
 
@@ -129,7 +130,8 @@ router.delete('/delete/:id', (req, res) => {
     .then(response => {
       res.status(200).json({
         success: true,
-        message: 'Удалено'
+        message: 'Удалено',
+        subject: response
       })
     })
     .catch(err => {

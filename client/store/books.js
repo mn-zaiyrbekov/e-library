@@ -14,6 +14,9 @@ export const mutations = {
   },
   edit_book(state, book) {
     editMutation(state.books, book)
+  },
+  delete_book(state, book) {
+    state.books = book
   }
 }
 
@@ -49,6 +52,22 @@ export const actions = {
     if (res.data.success) {
       const book = res.data.subject
       commit('edit_book', book)
+    }
+    return res
+  },
+  // #### DELETE BOOK
+  async deleteBook({commit}, bookId) {
+    const res = await this.$axios.delete(`/home-page/books/delete/${bookId}`)
+    if (res.data.success) {
+      commit('delete_book', res.data.subject)
+    }
+    return res
+  },
+  // #### ADD NEW BOOK
+  async addNewBook({commit}, book) {
+    const res = await this.$axios.post('/home-page/books/add', book)
+    if (res.data.success) {
+      commit('set_books', book)
     }
     return res
   }
