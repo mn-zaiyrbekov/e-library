@@ -1,3 +1,5 @@
+import {editMutation} from '@/utils/store-utils';
+
 export const state = () => ({
   books: [],
   book: {}
@@ -16,8 +18,10 @@ export const mutations = {
 }
 
 export const getters = {
-  books: state => state.books,
-  book: state => state.book
+  books: (state) => state.books,
+  get: state => id => {
+    return state.books.find(b => b._id == id) || {}
+  }
 }
 
 export const actions = {
@@ -40,8 +44,8 @@ export const actions = {
     return res
   },
   // #### UPDATE BOOK
-  async getBookEdit({commit}, {bookId}, book) {
-    const res = await this.$axios.put(`/home-page/books/update/${bookId}`, book)
+  async BookEdit({commit}, book) {
+    const res = await this.$axios.put(`/home-page/books/update/${book._id}`, book)
     if (res.data.success) {
       const book = res.data.subject
       commit('edit_book', book)

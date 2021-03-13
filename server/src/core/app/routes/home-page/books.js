@@ -99,6 +99,7 @@ router.put('/update/:id', (req, res) => {
     .then(response => {
       res.status(200).json({
         success: true,
+        new: true,
         subject: response
       })
     })

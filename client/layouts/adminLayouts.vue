@@ -52,7 +52,7 @@ export default {
     drawer: null,
     links: [
       ['mdi-home', 'Главная', '/admin'],
-      ['mdi-bookshelf', 'Раздел книги', '/admin/books'],
+      ['mdi-bookshelf', 'Раздел книги', '/'],
       ['mdi-account', 'Пользователи', '/admin/users']
     ],
   }),

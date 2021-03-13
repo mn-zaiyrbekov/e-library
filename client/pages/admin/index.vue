@@ -18,7 +18,7 @@
             </v-list-item-content>
               <v-btn 
                 small
-                :to="`admin/edit/${book._id}`"
+                :to="`/admin/books/edit/${book._id}`"
               >
                 <v-icon small>mdi-pencil</v-icon>
               </v-btn>
@@ -46,7 +46,7 @@ import { mapGetters, mapActions } from 'vuex'
 import VClamp from 'vue-clamp'
 export default {  
   layout: 'adminLayouts',
-  name: 'AdminMain',
+  name: 'adminmain',
   components: {VClamp},
   data() {
     return {
