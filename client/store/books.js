@@ -1,4 +1,4 @@
-import {editMutation} from '@/utils/store-utils';
+import { editMutation } from '@/utils/store-utils'
 
 export const state = () => ({
   books: [],
@@ -15,6 +15,9 @@ export const mutations = {
   },
   set_book(state, book) {
     state.book = book
+  },
+  set_booksError(state, err) {
+    state.booksError = err
   },
   edit_book(state, book) {
     editMutation(state.books, book)
@@ -40,85 +43,109 @@ export const getters = {
 
 export const actions = {
   // #### GET ALL BOOKS
-  async getBooks({commit}, {limit}) {
+  getBooks({commit}, {limit}) {
     try{
-      const res = await this.$axios.get(`/home-page/books`, {params: {limit: limit}})
-      if (res.data.success) {
-        const books = res.data.subject
-        commit('set_books', books)
-      }
-      return res
+      this.$axios.get(`/home-page/books`, {params: {limit: limit}})
+      .then(res => {
+        if (res.data.success) {
+          const books = res.data.subject
+          commit('set_books', books)
+        }
+        return res
+      })
+      .catch(err => { commit('set_booksError', err) })
     }catch(err) {
-      commit('booksError', err)
+      commit('set_booksError', err)
     }
   },
   // #### GET ONE BOOK
-  async getBook({commit}, {bookId}) {
+  getBook({commit}, {bookId}) {
     try{
-      const res = await this.$axios.get(`/home-page/books/${bookId}`)
-      if (res.data.success) {
-        const book = res.data.subject
-        commit('set_book', book)
-      }
-      return res
+      this.$axios.get(`/home-page/books/${bookId}`)
+      .then(res => {
+        if (res.data.success) {
+          const book = res.data.subject
+          commit('set_book', book)
+        }
+        return res
+      })
+      .catch(err => { commit('set_bookError', err) })
     }catch(err) {
-      commit('bookError', err)
+      commit('set_bookError', err)
     }
   },
   // #### UPDATE BOOK
-  async BookEdit({commit}, book) {
+  BookEdit({commit}, book) {
     try{
-      const res = await this.$axios.put(`/home-page/books/update/${book._id}`, book)
-      if (res.data.success) {
-        const book = res.data.subject
-        commit('edit_book', book)
-      }
-      return res
-    }catch(err) {
-      commit('booksError', err)
-    }
-  },
-  // #### DELETE BOOK
-  async deleteBook({commit}, bookId) {
-    try{
-      const res = await this.$axios.delete(`/home-page/books/delete/${bookId}`)
-      if (res.data.success) {
-        commit('delete_book', res.data.subject)
-      }
-      return res
-    }catch(err) {
-      commit('booksError', err)
-    }
-  },
-  // #### ADD NEW BOOK
-  async addNewBook({commit}, book) {
-    try{
-      const res = await this.$axios.post('/home-page/books/add', book)
-      if (res.data.success) {
-        commit('set_books', book)
-      }
-      return res
-    }catch(err) {
-      commit('booksError', err)
-    }
-  },
-  // #### ADD BOOK FOR USER
-  async insertUserBook({commit}, book) {
-    try{
-      const res = await this.$axios.post('/home-page/books/addUserBooks', {
-        id: this.$auth.user._id,
-        bookId: book
+      this.$axios.put(`/home-page/books/update/${book._id}`, book)
+      .then(res => {
+        if (res.data.success) {
+          const book = res.data.subject
+          commit('edit_book', book)
+        }
+        return res
       })
-      return res
+      .catch(err => { commit('set_booksError', err) })
+    }catch(err) {
+      commit('set_bookError', err)
+    }
+  },
+
+  // #### DELETE BOOK
+  deleteBook({commit}, bookId) {
+    try{
+      this.$axios.delete(`/home-page/books/delete/${bookId}`)
+      .then(res => {
+        if (res.data.success) {
+          commit('delete_book', res.data.subject.message)
+        }
+        return res
+      })
+      .catch(err => { commit('set_booksError', err) })
+    }catch(err) {
+      commit('set_booksError', err)
+    }
+  },
+
+  // #### ADD NEW BOOK
+  addNewBook({commit}, book) {
+    try{
+      this.$axios.post('/home-page/books/add', book)
+      .then(res => {
+        if (res.data.success) {
+          commit('set_books', book)
+        }
+        return res
+      })
+      .catch(err => { commit('set_booksError', err) })
+    }catch(err) {
+      commit('set_booksError', err)
+    }
+  },
+
+  // #### ADD BOOK FOR USER
+  insertUserBook({commit}, book) {
+    try{
+      this.$axios.post('/home-page/books/addUserBooks', { id: this.$auth.user._id, bookId: book })
+      .then(res => res)
+      .catch(err => { commit('set_userBookError', err) })
     }catch(err) {
       commit('set_userBookError', err)
     }
   },
-  async getUserBooks({commit}, idUser) {
-    const res = await this.$axios.get(`/home-page/books/getUserbooks/${idUser}`)
-    if (res.data.success) {
-      commit('set_userBooks', res.data.subject)
-    }else{
+
+  // #### GET USER BOOKS
+  getUserBooks({commit}, idUser) {
+    try{
+      this.$axios.get(`/home-page/books/getUserbooks/${idUser}`)
+      .then(res => {
+        if (res.data.success) {
+          commit('set_userBooks', res.data.subject)
+        }
+      }).catch(err => {
+        commit('set_userBookError', err)
+      })
+    }catch(err) {
       commit('set_userBookError', res.data.error)
     }
   }

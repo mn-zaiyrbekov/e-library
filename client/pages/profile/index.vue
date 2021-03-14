@@ -35,19 +35,11 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
 export default {
   head() {
     return {
       title: 'Мой профиль'
     }
-  },
-  // computed: mapGetters({user: 'user/user'}),
-  methods: {
-    // ...mapActions({getUserProfile: 'user/getUserProfile'})
-  },
-  created() {
-    // this.getUserProfile()
   }
 }
 </script>
