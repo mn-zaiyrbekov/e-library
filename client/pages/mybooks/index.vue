@@ -3,23 +3,24 @@
     <v-col 
       cols="12" 
       md="3"
-      v-for="(book, key) in books"
+      v-for="(book, key) in userBooks"
       :key="key"
     >
       <MyBooksCard 
-        v-for="(book, key) in book"
-        :key="key"
         :title="book.title"
-        :desc="book.description"
-        :image="book.image"
-        :genre="book.genre"
-        :ratin="book.rating"
+        :description="book.description"
+        :bookImage="book.bookImage"
+        :bookAuthor="book.Author"
+        :bookGenre="book.bookGenre"
+        :bookLink="book.bookLink"
+        :bookYear="book.bookYear"
       />
     </v-col>
   </v-row>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import MyBooksCard from '@/components/MyBooksCard/MyBooksCard'
 export default {
   name: 'MyBooks',
@@ -31,13 +32,21 @@ export default {
       title: 'Мои книги'
     }
   },
-  data() {
-    return {
-      books: [
-        {book: {id: 1, title: 'Сила подсознания, или Как изменить жизнь за 4 недели', description: 'Книга-сенсация ‒ №1 среди книг по самопомощи. Нет необходимости смиряться с реальностью и постоянно подстраиваться, ведь в любой момент мы можем изменить свою жизнь. Автор мировых бестселлеров по развитию мозга, профессор нейрохимии и нейробиологии, доктор Джо Диспенза предлагает научный подход к изменению жизни. Его уникальная программа рассчитана на 4 недели, за это время она научит вас работать со своим подсознанием, чтобы достичь желаемого ‒ вам остается только решить, что конкретно вы хотите изменить в своей жизни. Эта умная, содержательная и насыщенная практическим материалом книга поможет вам освободиться из плена эмоций, наполнить жизнь здоровьем, счастьем и изобилием. Каждый, кто прочтет эту книгу и воспользуется методикой доктора Диспензы, не пожалеет о затраченных усилиях.', image: 'https://cv4.litres.ru/pub/c/elektronnaya-kniga/cover_415/6301646-dzho-dispenza-sila-podsoznaniya-ili-kak-izmenit-zhizn-za-4-nedeli.jpg', genre: 'Зарубежная психология', rating: 4}},
-        {book: {id: 2, title: 'Очаровательный кишечник. Как самый могущественный орган управляет нами', description: 'Говорить о кишечнике и его проблемах не принято, а зря. Ведь существует мнение, что именно этот орган – самый могущественный в нашем организме, не зря иногда его называют вторым мозгом. Разобраться в хитросплетениях этого загадочного органа помогает немецкий микробиолог Джулия Эндерс. Она просто и понятно описывает весь процесс пищеварения: серьезная и сложная информация подается в легкой форме и сопровождается забавными наглядными иллюстрациями.', image: 'https://cv7.litres.ru/pub/c/elektronnaya-kniga/cover_extra/72060786-dzhuliya-enders-ocharovatelnyy-kishechnik-kak-samyy-moguschestvennyy-organ.gif', genre: ' Зарубежная образовательная литература,', rating: 3}}
-      ]
-    }
+  computed: {
+    ...mapGetters({
+      userBooks: 'books/userBooks'
+    })
+  },
+  methods: {
+    ...mapActions({
+      getUserBooks: 'books/getUserBooks'
+    })
+  },
+  created() {
+    this.getUserBooks(this.$auth.user._id)
+  },
+  mounted() {
+    console.log(this.$auth.user._id);
   }
 }
 </script>

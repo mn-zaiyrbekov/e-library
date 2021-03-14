@@ -30,7 +30,7 @@ const BooksSchema = new Schema({
     default: ''
   },
   userBook: [
-    {type: ObjectId, ref: 'users'}
+    { type: ObjectId, ref: 'users' }
   ]
 })
 module.exports = model('books', BooksSchema)

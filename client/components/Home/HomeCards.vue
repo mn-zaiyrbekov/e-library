@@ -53,17 +53,17 @@
       </v-card-text>
       <v-divider class="mx-4"></v-divider>
       <v-card-actions>
-        <v-btn color="deep-purple lighten-2" text>
-          <v-icon title="читать онлайн">mdi-book-open</v-icon>
+        <v-btn color="pink lighten-5">
+          <v-icon title="читать онлайн" color="deep-purple lighten-1">mdi-book-open</v-icon>
         </v-btn>
-        <v-btn color="deep-purple lighten-2" text>
+        <!-- <v-btn color="deep-purple lighten-2" text>
           <v-icon class="mx-4" title="скачать">mdi-cloud-download</v-icon>
-        </v-btn>
+        </v-btn> -->
         <v-btn 
-          color="deep-purple lighten-2" 
-          text
+          color="pink lighten-5"
           :to="`/books/${id}`"
-        ><v-icon class="mx-4" title="открыть">mdi-folder-outline</v-icon>
+        >
+          <v-icon title="Открыть" color="deep-purple lighten-1">mdi-folder-outline</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>

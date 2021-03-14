@@ -148,4 +148,54 @@ router.delete('/delete/:id', (req, res) => {
   }
 })
 
+/**
+ * @route '/BOOKS/ADD'
+ * @description 'INSERT BOOKS FOR USER'
+ * @method POST
+ */
+ router.post('/addUserBooks', async (req, res) => {
+  const {id, bookId} = req.body
+  try{
+    const response = await Books.findByIdAndUpdate(bookId, {
+      $push: {userBook: id}
+    }, {new: true})
+    if (response) {
+      res.status(200).json({
+        message: 'Добавлено',
+        success: true,
+        subject: response
+      })
+    }
+  }catch(err) {
+    res.status(400).json({
+      message: 'Произошла ошибка.. повторите позже',
+      success: false,
+      error: err
+    })
+  }
+})
+
+/**
+ * @route '/getUserbooks'
+ * @description 'GET USER BOOKS FOR CLIENT'
+ * @method GET
+ */
+ router.get('/getUserbooks/:id', async (req, res) => {
+  const idUser = req.params.id
+  try{
+    const response = await Books.find({userBook: idUser})
+    if (response) {
+      res.status(200).json({
+        success: true,
+        subject: response
+      })
+    }
+  }catch(err) {
+    res.status(400).json({
+      message: 'Произошла ошибка.. повторите позже',
+      success: false,
+      error: err
+    })
+  }
+})
 module.exports = router

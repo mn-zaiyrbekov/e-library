@@ -3,8 +3,10 @@ import {editMutation} from '@/utils/store-utils';
 export const state = () => ({
   books: [],
   book: {},
-  booksError: null,
-  bookError: null
+  booksError: '',
+  bookError: '',
+  userBooks: [],
+  userBooksError: ''
 })
 
 export const mutations = {
@@ -19,14 +21,21 @@ export const mutations = {
   },
   delete_book(state, book) {
     state.books = book
+  },
+  set_userBooks(state, book) {
+    state.userBooks = book
+  },
+  set_userBookError(state, err) {
+    state.userBooksError = err
   }
 }
 
 export const getters = {
-  books: (state) => state.books,
+  books: ( state ) => state.books,
   get: state => id => {
     return state.books.find(b => b._id == id) || {}
-  }
+  },
+  userBooks: ( state ) => state.userBooks
 }
 
 export const actions = {
@@ -91,6 +100,26 @@ export const actions = {
       return res
     }catch(err) {
       commit('booksError', err)
+    }
+  },
+  // #### ADD BOOK FOR USER
+  async insertUserBook({commit}, book) {
+    try{
+      const res = await this.$axios.post('/home-page/books/addUserBooks', {
+        id: this.$auth.user._id,
+        bookId: book
+      })
+      return res
+    }catch(err) {
+      commit('set_userBookError', err)
+    }
+  },
+  async getUserBooks({commit}, idUser) {
+    const res = await this.$axios.get(`/home-page/books/getUserbooks/${idUser}`)
+    if (res.data.success) {
+      commit('set_userBooks', res.data.subject)
+    }else{
+      commit('set_userBookError', res.data.error)
     }
   }
 }

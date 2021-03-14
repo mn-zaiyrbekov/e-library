@@ -15,7 +15,10 @@ const UserSchema = new Schema({
     type: String
   },
   books: [
-    {type: ObjectId, ref: 'books'}
+    { 
+      type: ObjectId, 
+      ref: 'books'
+    }
   ],
   createdAt: {
     type: Date,

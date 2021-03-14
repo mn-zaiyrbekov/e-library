@@ -32,7 +32,7 @@ export default {
   },
   data() {
     return {
-      limitBooks: 16
+      limitBooks: 16,
     }
   },
   components: {BooksCard},
@@ -48,7 +48,7 @@ export default {
   },
   created() {
     this.getBooks({limit: this.limitBooks})
-  }
+  },
 }
 </script>
 

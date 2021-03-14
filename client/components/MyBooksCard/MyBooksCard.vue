@@ -14,12 +14,12 @@
     <v-img
       width="220"
       height="280"
-      :src="image"
+      :src="bookImage"
       class="mx-auto"
     ></v-img>
 
     <v-card-title class="subtitle-1" :title="title">
-      <v-clamp autoresize :max-lines="2">{{title}}</v-clamp>
+      <v-clamp autoresize :max-lines="1">{{title}}</v-clamp>
     </v-card-title>
 
     <v-card-text>
@@ -40,14 +40,14 @@
         ></v-rating>
 
         <div class="grey--text ml-4">
-          {{rating}}
+          Rating
         </div>
       </v-row>
       <div
         class="my-5 description"
         ref="description"
       >
-        <v-clamp autoresize :max-lines="3" :title="desc">{{desc}}</v-clamp>
+        <v-clamp autoresize :max-lines="3" :title="description">{{description}}</v-clamp>
       </div>
     </v-card-text>
     <v-divider class="mx-4"></v-divider>
@@ -73,25 +73,30 @@ export default {
   }),
   props: {
     title: {
-      type: String,
-      default: ''
+      type: String
     },
-    desc: {
-      type: String,
-      default: ''
+    description: {
+      type: String
     },
-    image: {
-      type: String,
-      default: ''
+    bookImage: {
+      type: String
     },
-    genre: {
-      type: String,
-      default: ''
+    bookLink: {
+      type: String
+    },
+    bookYear: {
+      type: Number
+    },
+    bookAuthor: {
+      type: String
+    },
+    bookGenre: {
+      type: String
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
