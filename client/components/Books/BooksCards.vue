@@ -138,7 +138,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      setBook: 'books/insertUserBook'
+      setBook: 'user/insertUserBook'
     }),
     async addMyBooks() {
       this.snackbar = true

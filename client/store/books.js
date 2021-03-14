@@ -4,9 +4,7 @@ export const state = () => ({
   books: [],
   book: {},
   booksError: '',
-  bookError: '',
-  userBooks: [],
-  userBooksError: ''
+  bookError: ''
 })
 
 export const mutations = {
@@ -24,12 +22,6 @@ export const mutations = {
   },
   delete_book(state, book) {
     state.books = book
-  },
-  set_userBooks(state, book) {
-    state.userBooks = book
-  },
-  set_userBookError(state, err) {
-    state.userBooksError = err
   }
 }
 
@@ -37,8 +29,7 @@ export const getters = {
   books: ( state ) => state.books,
   get: state => id => {
     return state.books.find(b => b._id == id) || {}
-  },
-  userBooks: ( state ) => state.userBooks
+  }
 }
 
 export const actions = {
@@ -120,33 +111,6 @@ export const actions = {
       .catch(err => { commit('set_booksError', err) })
     }catch(err) {
       commit('set_booksError', err)
-    }
-  },
-
-  // #### ADD BOOK FOR USER
-  insertUserBook({commit}, book) {
-    try{
-      this.$axios.post('/home-page/books/addUserBooks', { id: this.$auth.user._id, bookId: book })
-      .then(res => res)
-      .catch(err => { commit('set_userBookError', err) })
-    }catch(err) {
-      commit('set_userBookError', err)
-    }
-  },
-
-  // #### GET USER BOOKS
-  getUserBooks({commit}, idUser) {
-    try{
-      this.$axios.get(`/home-page/books/getUserbooks/${idUser}`)
-      .then(res => {
-        if (res.data.success) {
-          commit('set_userBooks', res.data.subject)
-        }
-      }).catch(err => {
-        commit('set_userBookError', err)
-      })
-    }catch(err) {
-      commit('set_userBookError', res.data.error)
     }
   }
 }

@@ -154,7 +154,7 @@ router.delete('/delete/:id', (req, res) => {
  * @method POST
  */
  router.post('/addUserBooks', async (req, res) => {
-  const {id, bookId} = req.body
+  const { id, bookId } = req.body
   try{
     const response = await Books.findByIdAndUpdate(bookId, {
       $push: {userBook: id}
@@ -184,6 +184,33 @@ router.delete('/delete/:id', (req, res) => {
   const idUser = req.params.id
   try{
     const response = await Books.find({userBook: idUser})
+    if (response) {
+      res.status(200).json({
+        success: true,
+        subject: response
+      })
+    }
+  }catch(err) {
+    res.status(400).json({
+      message: 'Произошла ошибка.. повторите позже',
+      success: false,
+      error: err
+    })
+  }
+})
+/**
+ * @route '/DELETEUSERBOOKS'
+ * @description 'DELETE USER BOOKS'
+ * @method DELETE
+ */
+ router.post('/deleteUserbooks', async (req, res) => {
+  // const { idBook } = req.body
+  console.log(req.body)
+  return
+  try{
+    const response = await Books.findByIdAndUpdate(bookId, {
+      $pull: {books: idUser}
+    })
     if (response) {
       res.status(200).json({
         success: true,
