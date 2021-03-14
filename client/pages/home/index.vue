@@ -16,6 +16,7 @@
         :key="key"
       >
         <HomeCards
+          :id="book._id"
           :title="book.title"
           :description="book.description"
           :bookAuthor="book.bookAuthor"

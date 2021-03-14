@@ -53,12 +53,17 @@
       </v-card-text>
       <v-divider class="mx-4"></v-divider>
       <v-card-actions>
-        <v-btn
-          color="deep-purple lighten-2"
-          text
-        >
+        <v-btn color="deep-purple lighten-2" text>
           <v-icon title="читать онлайн">mdi-book-open</v-icon>
+        </v-btn>
+        <v-btn color="deep-purple lighten-2" text>
           <v-icon class="mx-4" title="скачать">mdi-cloud-download</v-icon>
+        </v-btn>
+        <v-btn 
+          color="deep-purple lighten-2" 
+          text
+          :to="`/books/${id}`"
+        ><v-icon class="mx-4" title="открыть">mdi-folder-outline</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
@@ -71,6 +76,9 @@ export default {
   name: 'HomeCards',
   components: {VClamp},
   props: {
+    id: {
+      type: String
+    },
     title: {
       type: String,
       default: ''

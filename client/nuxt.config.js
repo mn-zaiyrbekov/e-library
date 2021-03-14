@@ -3,8 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Научная библиотека',
-    title: 'Научная библиотека',
+    titleTemplate: '%s - Научная библиотека ИГУ им. К.Тыныстанова',
+    title: '',
     htmlAttrs: {
       lang: 'en'
     },

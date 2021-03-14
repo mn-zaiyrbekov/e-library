@@ -7,6 +7,7 @@
       :key="key"
     >
       <BooksCard 
+        :idBook="book._id"
         :title="book.title"
         :description="book.description"
         :bookAuthor="book.bookAuthor"
@@ -31,7 +32,7 @@ export default {
   },
   data() {
     return {
-      limitBooks: 8
+      limitBooks: 16
     }
   },
   components: {BooksCard},
