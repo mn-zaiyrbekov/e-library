@@ -40,14 +40,20 @@ router.post('/add', (req, res) => {
  * @method GET
  */
 router.get('/', async (req, res) => {
-  let limit = req.query.limit
-  const response = await Books.find().limit(Number(limit))
-  if (response) {
-    res.status(200).json({
-      success: true,
-      subject: response
-    })
-  }else{
+  const pagintaion = 4
+  const page = req.query.page ? parseInt(req.query.page) : 1
+  console.log(req.query.page)
+  try{
+    const response = await Books.find()
+    .limit(Number(pagintaion))
+    .scip((page - 1) * pagintaion)
+    if (response) {
+      res.status(200).json({
+        success: true,
+        subject: response
+      })
+    }
+  }catch(err) {
     res.status(400).json({
       success: false,
       message: 'Произошла неизвестная ошибка...',

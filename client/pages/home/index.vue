@@ -40,7 +40,8 @@ export default {
   },
   data() {
     return {
-      limitBooks: 4
+      limitBooks: 4,
+      pagination: ''
     }
   },
   head() {

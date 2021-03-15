@@ -1,23 +1,32 @@
 <template>
-  <v-row>
-    <v-col 
-      cols="12" 
-      md="3"
-      v-for="(book, key) in books"
-      :key="key"
-    >
-      <BooksCard 
-        :idBook="book._id"
-        :title="book.title"
-        :description="book.description"
-        :bookAuthor="book.bookAuthor"
-        :bookGenre="book.bookGenre"
-        :bookYear="book.bookYear"
-        :bookImage="book.bookImage"
-        :bookLink="book.bookLink"
-      />
-    </v-col>
-  </v-row>
+  <div>
+    <v-row>
+      <v-col
+        cols="12"
+        md="3"
+        v-for="(book, key) in books"
+        :key="key"
+      >
+        <BooksCard
+          :idBook="book._id"
+          :title="book.title"
+          :description="book.description"
+          :bookAuthor="book.bookAuthor"
+          :bookGenre="book.bookGenre"
+          :bookYear="book.bookYear"
+          :bookImage="book.bookImage"
+          :bookLink="book.bookLink"
+        />
+      </v-col>
+    </v-row>
+    <div class="text-center">
+      <v-pagination
+        v-model="page"
+        :length="4"
+        circle
+      ></v-pagination>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -33,6 +42,8 @@ export default {
   data() {
     return {
       limitBooks: 16,
+      pagination: '',
+      page: null
     }
   },
   components: {BooksCard},
@@ -47,7 +58,10 @@ export default {
     })
   },
   created() {
-    this.getBooks({limit: this.limitBooks})
+    const config = {
+      Headers: { page: 1 }
+    }
+    this.getBooks(config)
   },
 }
 </script>

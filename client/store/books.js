@@ -34,9 +34,9 @@ export const getters = {
 
 export const actions = {
   // #### GET ALL BOOKS
-  getBooks({commit}, {limit}) {
+  getBooks({commit}, config) {
     try{
-      this.$axios.get(`/home-page/books`, {params: {limit: limit}})
+      this.$axios.get(`/home-page/books`, { params: { page: config } } )
       .then(res => {
         if (res.data.success) {
           const books = res.data.subject
