@@ -20,11 +20,12 @@
       </v-col>
     </v-row>
     <div class="text-center">
-      <v-pagination
-        v-model="page"
-        :length="4"
-        circle
-      ></v-pagination>
+      <v-btn v-on:click="prevePage" v-if="$nuxt.$route.query.page > 1">
+        Назад
+      </v-btn>
+      <v-btn v-on:click="nextPage">
+        Далее
+      </v-btn>
     </div>
   </div>
 </template>
@@ -41,9 +42,8 @@ export default {
   },
   data() {
     return {
-      limitBooks: 16,
-      pagination: '',
-      page: null
+      limitBooks: 4,
+      pagination: ''
     }
   },
   components: {BooksCard},
@@ -55,14 +55,48 @@ export default {
   methods: {
     ...mapActions({
       getBooks: 'books/getBooks',
-    })
+    }),
+    async nextPage() {
+      if (isNaN($nuxt.$route.query.page)) {
+        var nextPage = 2
+        var pagination = 2
+        
+      }else{
+        var nextPage = parseInt($nuxt.$route.query.page) + 1
+        var pagination = parseInt($nuxt.$route.query.page) + 1
+      }
+      console.log(pagination)
+      let config = {
+        params: {
+          page: pagination,
+          // limit: this.limitBooks
+        }
+      }
+      await this.getBooks(config)
+      this.$router.push(`/books?page=${nextPage}`)
+    },
+    async prevePage() {
+      var prevPage = parseInt($nuxt.$route.query.page) - 1
+      let pagination = parseInt($nuxt.$route.query.page) - 1
+      let config = {
+        params: {
+          page: pagination,
+          // limit: this.limitBooks
+        }
+      }
+      await this.getBooks(config)
+      this.$router.push(`/books?page=${prevPage}`)
+    }
   },
   created() {
-    const config = {
-      Headers: { page: 1 }
+    let config = {
+      params: {
+        limit: this.limitBooks,
+        page: this.$nuxt.$route.query.page
+      }
     }
     this.getBooks(config)
-  },
+  }
 }
 </script>
 

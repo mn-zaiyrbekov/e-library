@@ -22,7 +22,7 @@
       Войти
       <v-icon class="mx-6" small>mdi-send</v-icon>
     </v-btn>
-    <v-btn to="/" outlined tile color="primary white--text">
+    <v-btn to="/signup" outlined tile color="primary white--text">
       Нет аккаунта ?
     </v-btn>
   </form>

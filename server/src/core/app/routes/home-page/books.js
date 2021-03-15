@@ -40,13 +40,17 @@ router.post('/add', (req, res) => {
  * @method GET
  */
 router.get('/', async (req, res) => {
-  const pagintaion = 4
+  // let { limit } = req.query
+  const limit = 8
   const page = req.query.page ? parseInt(req.query.page) : 1
-  console.log(req.query.page)
   try{
+    const booksCount = await Books.count()
+    console.log(booksCount)
     const response = await Books.find()
-    .limit(Number(pagintaion))
-    .scip((page - 1) * pagintaion)
+    .limit(limit)
+    .skip((page - 1) * limit) 
+    .lean()
+    .exec()
     if (response) {
       res.status(200).json({
         success: true,
