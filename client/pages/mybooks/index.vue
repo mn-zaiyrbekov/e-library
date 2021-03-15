@@ -1,12 +1,13 @@
 <template>
-  <v-row>
-    <v-col 
-      cols="12" 
+  <div>
+      <v-row>
+    <v-col
+      cols="12"
       md="3"
       v-for="(book, key) in userBooks"
       :key="key"
     >
-      <MyBooksCard 
+      <MyBooksCard
         :idBook="book._id"
         :title="book.title"
         :description="book.description"
@@ -16,12 +17,27 @@
         :bookLink="book.bookLink"
         :bookYear="book.bookYear"
         :deleteBook="deleteBookInUser"
-        :messageSet="errors"
         :snackbar="snackbar"
         :timeoute="timeoute"
       />
     </v-col>
   </v-row>
+      <v-snackbar
+        v-model="snackbar"
+        :timeout="timeoute"
+      >
+        {{message}}
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="blue"
+            text
+            v-bind="attrs"
+          >
+            Закрыть
+          </v-btn>
+        </template>
+      </v-snackbar>
+  </div>
 </template>
 
 <script>
@@ -55,8 +71,10 @@ export default {
       getUserBooks: 'user/getUserBooks',
       deleteUserBook: 'user/deleteUserBooks'
     }),
-    async deleteBookInUser(idBook) {      
-      const res = await this.deleteUserBook(this.$auth.user._id, idBook)
+    async deleteBookInUser(idBook) {
+      // alert('BOOK ID' + idBook)
+      this.snackbar = true
+      const res = await this.deleteUserBook({idUser: this.$auth.user._id, bookID: idBook})
       if(res.data.success) {
         this.message = res.data.message
       }

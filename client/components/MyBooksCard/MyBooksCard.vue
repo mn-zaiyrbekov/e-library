@@ -58,29 +58,14 @@
           text
         >
           <v-icon title="поделится">mdi-arrange-send-backward</v-icon>
-          <v-icon 
-            class="mx-4" 
+          <v-icon
+            class="mx-4"
             title="удалить"
             @click="deleteBook(idBook)"
           >mdi-delete-off</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-snackbar
-      v-model="snackbar"
-      :timeout="timeoute"
-    >
-      {{messageSet}}
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="blue"
-          text
-          v-bind="attrs"
-        >
-          Закрыть
-        </v-btn>
-      </template>
-    </v-snackbar>
   </div>
 </template>
 
@@ -119,15 +104,6 @@ export default {
     },
     deleteBook: {
       type: Function
-    },
-    messageSet: {
-      type: null
-    },
-    timeoute: {
-      type: Number
-    },
-    snackbar: {
-      type: Boolean
     }
   }
 }

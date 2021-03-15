@@ -201,18 +201,17 @@ router.delete('/delete/:id', (req, res) => {
 /**
  * @route '/DELETEUSERBOOKS'
  * @description 'DELETE USER BOOKS'
- * @method DELETE
+ * @method PUT
  */
- router.post('/deleteUserbooks', async (req, res) => {
-  // const { idBook } = req.body
-  console.log(req.body)
-  return
+ router.put('/deleteUserbooks', async (req, res) => {
+  const { bookId, userId } = req.body
   try{
     const response = await Books.findByIdAndUpdate(bookId, {
-      $pull: {books: idUser}
+      $pull: {userBook: userId}
     })
     if (response) {
       res.status(200).json({
+        message: 'Удалено',
         success: true,
         subject: response
       })

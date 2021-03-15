@@ -9,6 +9,10 @@ export const mutations = {
   },
   set_userBookError(state, err) {
     state.userBooksError = err
+  },
+  delete_userBooks(state, id) {
+    const index = state.userBooks.findIndex(b => b.id == id)
+    state.userBooks.splice(index, 1)
   }
 }
 
@@ -48,14 +52,14 @@ export const actions = {
     }
   },
   // #### DELETE USER BOOKS
-  async deleteUserBooks( { commit }, userId, idBooks) {
+  async deleteUserBooks( { commit }, { idUser, bookID }) {
     try{
-      const res = await this.$axios.post(`/home-page/books/deleteUserbooks`, {
-        userId: userId,
-        bookId: idBooks
+      const res = await this.$axios.put(`/home-page/books/deleteUserbooks`, {
+        userId: idUser,
+        bookId: bookID
       })
       if (res.data.success) {
-        commit('set_userBooks', res.data.subject)
+        commit('delete_userBooks', res.data.subject._id)
       }else{
         commit('set_userBookError', err)
       }
