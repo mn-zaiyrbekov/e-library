@@ -3,11 +3,8 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - Научная библиотека ИГУ им. К.Тыныстанова',
-    title: '',
-    htmlAttrs: {
-      lang: 'en'
-    },
+    titleTemplate: '%s - Научная библиотека имени. Касыма Тыныстанова',
+    title: 'Главная',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -24,7 +21,6 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    // 'plugins/paginations.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -38,9 +34,24 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/pwa',
     '@nuxtjs/auth-next'
   ],
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {
+    baseURL: 'http://localhost:8000/api'
+  },
+
+  // PWA module configuration: https://go.nuxtjs.dev/pwa
+  pwa: {
+    manifest: {
+      lang: 'en'
+    }
+  },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
@@ -62,29 +73,26 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
-
-  axios: {
-    baseURL: 'http://localhost:5000/api'
+  build: {
   },
-
   auth: {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/home-page/user/auth', method: 'post' },
-          logout: { url: '/home-page/user/logout', method: 'get' },
-          user: { url: '/home-page/user/profile', method: 'get' }
+          login: { url: '/user/login', method: 'post' },
+          logout: { url: '/user/logout', method: 'get' },
+          user: { url: '/user/login/profile', method: 'get' }
         }
       }
     },
     redirect: {
       login: '/login',
-      callback: '/signup',
-      home: '/home'
+      logout: '/login',
+      callback: '/register',
+      home: '/'
     }
   },
   router: {
-    middleware: ['auth']
+
   }
 }

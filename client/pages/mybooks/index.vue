@@ -1,50 +1,48 @@
 <template>
   <div>
-      <v-row>
-    <v-col
-      cols="12"
-      md="3"
-      v-for="(book, key) in userBooks"
-      :key="key"
-    >
-      <MyBooksCard
-        :idBook="book._id"
-        :title="book.title"
-        :description="book.description"
-        :bookImage="book.bookImage"
-        :bookAuthor="book.Author"
-        :bookGenre="book.bookGenre"
-        :bookLink="book.bookLink"
-        :bookYear="book.bookYear"
-        :deleteBook="deleteBookInUser"
-        :snackbar="snackbar"
-        :timeoute="timeoute"
-      />
-    </v-col>
-  </v-row>
-      <v-snackbar
-        v-model="snackbar"
-        :timeout="timeoute"
+    <v-row>
+      <v-col
+        cols="12"
+        md="3"
+        v-for="(book, key) in userBooks"
+        :key="key"
       >
-        {{message}}
-        <template v-slot:action="{ attrs }">
-          <v-btn
-            color="blue"
-            text
-            v-bind="attrs"
-          >
-            Закрыть
-          </v-btn>
-        </template>
-      </v-snackbar>
+        <MyBooksCard
+          :bookId="book._id"
+          :booksTitle="book.booksTitle"
+          :booksLink="book.booksLink"
+          :booksImage="book.booksImage"
+          :booksGenre="book.booksGenre"
+          :booksDesc="book.booksDesc"
+          :booksAuthor="book.booksAuthor"
+          :booksYear="book.booksYear"
+        />
+      </v-col>
+    </v-row>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="timeoute"
+    >
+      {{message}}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+        >
+          Закрыть
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import MyBooksCard from '@/components/MyBooksCard/MyBooksCard'
+import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'MyBooks',
+  middleware: ['auth'],
   data() {
     return {
       message: null,
@@ -63,25 +61,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userBooks: 'user/userBooks'
+      userBooks: 'user/getBook'
     })
   },
   methods: {
     ...mapActions({
-      getUserBooks: 'user/getUserBooks',
-      deleteUserBook: 'user/deleteUserBooks'
-    }),
-    async deleteBookInUser(idBook) {
-      // alert('BOOK ID' + idBook)
-      this.snackbar = true
-      const res = await this.deleteUserBook({idUser: this.$auth.user._id, bookID: idBook})
-      if(res.data.success) {
-        this.message = res.data.message
-      }
-    }
+      fetchBooksUser: 'user/getUserBooks'
+    })
   },
   created() {
-    this.getUserBooks(this.$auth.user._id)
+    this.fetchBooksUser(this.$auth.user._id)
   }
 }
 </script>

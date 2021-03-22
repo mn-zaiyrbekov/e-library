@@ -59,7 +59,8 @@
         <!-- <v-btn color="deep-purple lighten-2" text>
           <v-icon class="mx-4" title="скачать">mdi-cloud-download</v-icon>
         </v-btn> -->
-        <v-btn 
+        <v-btn
+          v-if="$auth.user"
           color="pink lighten-5"
           :to="`/books/${id}`"
         >
@@ -76,40 +77,14 @@ export default {
   name: 'HomeCards',
   components: {VClamp},
   props: {
-    id: {
-      type: String
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String,
-      default: ''
-    },
-    bookAuthor: {
-      type: String,
-      default: ''
-    },
-    bookGenre: {
-      type: String,
-      default: ''
-    },
-    bookYear: {
-      type: Number
-    },
-    bookImage: {
-      type: String,
-      default: ''
-    },
-    bookLink: {
-      type: String,
-      default: ''
-    },
-    homeRating: {
-      type: Number,
-      default: 4.3
-    },
+    id: { type: String }, title: { type: String, default: '' },
+    description: { type: String, default: '' },
+    bookAuthor: { type: String, default: '' },
+    bookGenre: { type: String, default: '' },
+    bookYear: { type: String, default: '' },
+    bookImage: { type: String, default: '' },
+    bookLink: { type: String, default: '' },
+    homeRating: { type: Number, default: 4.3 },
   },
   data () {
     return{

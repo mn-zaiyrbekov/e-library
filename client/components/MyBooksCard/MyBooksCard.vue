@@ -4,23 +4,16 @@
       class="mx-auto my-12"
       max-width="300"
     >
-      <template slot="progress">
-        <v-progress-linear
-          color="deep-purple"
-          height="10"
-          indeterminate
-        ></v-progress-linear>
-      </template>
 
       <v-img
         width="220"
         height="280"
-        :src="bookImage"
+        :src="booksImage"
         class="mx-auto"
       ></v-img>
 
-      <v-card-title class="subtitle-1" :title="title">
-        <v-clamp autoresize :max-lines="1">{{title}}</v-clamp>
+      <v-card-title class="subtitle-1" :title="booksTitle">
+        <v-clamp autoresize :max-lines="1">{{booksTitle}}</v-clamp>
       </v-card-title>
 
       <v-card-text>
@@ -48,7 +41,7 @@
           class="my-5 description"
           ref="description"
         >
-          <v-clamp autoresize :max-lines="3" :title="description">{{description}}</v-clamp>
+          <v-clamp autoresize :max-lines="3" title=""></v-clamp>
         </div>
       </v-card-text>
       <v-divider class="mx-4"></v-divider>
@@ -61,54 +54,86 @@
           <v-icon
             class="mx-4"
             title="удалить"
-            @click="deleteBook(idBook)"
+            @click.prevent="deleteBook(bookId)"
           >mdi-delete-off</v-icon>
         </v-btn>
       </v-card-actions>
     </v-card>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="timeoute"
+    >
+      {{messageSet}}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+        >
+          Закрыть
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import VClamp from 'vue-clamp'
 export default {
   name: 'MyBooksCard',
   components: {VClamp},
   data: () => ({
-    rating: 2.3
+    rating: 2.3,
+    messageSet: null,
+    timeoute: 1500,
+    snackbar: false
   }),
   props: {
-    idBook: {
+    bookId: {
       type: String
     },
-    title: {
+    booksTitle: {
       type: String
     },
-    description: {
+    booksLink: {
       type: String
     },
-    bookImage: {
+    booksImage: {
       type: String
     },
     bookLink: {
       type: String
     },
-    bookYear: {
-      type: Number
-    },
-    bookAuthor: {
+    booksYear: {
       type: String
     },
-    bookGenre: {
+    booksAuthor: {
       type: String
     },
-    deleteBook: {
-      type: Function
+    booksGenre: {
+      type: String
+    },
+    booksDesc: {
+      type: String
+    }
+  },
+  methods: {
+    ...mapActions({
+      deleteUserBooks: 'user/deleteUserBooks'
+    }),
+    async deleteBook(bookId) {
+      this.snackbar = true
+      const res = await this.deleteUserBooks({idUser: this.$auth.user._id, bookID: bookId})
+      if(res.data.success) {
+        this.messageSet = res.data.message
+      }else{
+        this.messageSet = res.data.error
+      }
     }
   }
 }
 </script>
 
 <style scoped>
-
 </style>

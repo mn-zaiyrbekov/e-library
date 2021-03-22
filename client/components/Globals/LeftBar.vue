@@ -11,7 +11,7 @@
       <v-list-item
         router
         exact
-        to="/home"
+        to="/"
       >
         <v-list-item-action>
           <v-icon>mdi-home</v-icon>
@@ -36,6 +36,7 @@
         router
         exact
         to="/mybooks"
+        v-if="$auth.user"
       >
         <v-list-item-action>
           <v-icon>mdi-book-settings</v-icon>
@@ -51,8 +52,8 @@
 export default {
   name: 'LeftBar',
   props: {
-    clipped: {type: Boolean, default: false},
-    drawer: {type: Boolean, default: false}
+    clipped: { type: Boolean, default: false },
+    drawer: { type: Boolean, default: false }
   },
   data() {
     return {

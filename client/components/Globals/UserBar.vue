@@ -49,8 +49,8 @@
 export default {
   name: 'UserBar',
   props: {
-    right: {type: Boolean, default: false},
-    drawer: {type: Boolean, default: false}
+    right: { type: Boolean, default: false },
+    drawer: { type: Boolean, default: false }
   },
   data() {
     return {
