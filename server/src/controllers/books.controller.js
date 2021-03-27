@@ -1,6 +1,6 @@
-const { Books } = require('../../Models')
+const Books = require('../models/books')
 
-const getAllBooks = (req, res) => {
+exports.getAllBooks = (req, res) => {
   let limit = req.query.limits
   try{
     Books.find()
@@ -27,7 +27,7 @@ const getAllBooks = (req, res) => {
   }
 }
 
-const getOneBook = (req, res) => {
+exports.getOneBook = (req, res) => {
   const bookId = req.params.id
   try{
     Books.findOne( { _id: bookId } )
@@ -53,7 +53,7 @@ const getOneBook = (req, res) => {
   }
 }
 
-const addNewBook = (req, res) => {
+exports.addNewBook = (req, res) => {
   const book = req.body
   try{
     const newBook = new Books(book)
@@ -80,7 +80,7 @@ const addNewBook = (req, res) => {
   }
 }
 
-const updateBook = (req, res) => {
+exports.updateBook = (req, res) => {
   const book = req.body
   const id = req.params.id
   try{
@@ -107,15 +107,14 @@ const updateBook = (req, res) => {
   }
 }
 
-const deleteBook = (req, res) => {
+exports.deleteBook = (req, res) => {
   const id = req.params.id
   try{
     Books.findByIdAndDelete(id)
     .then(response => {
       res.status(200).json({
         success: true,
-        message: 'Удалено',
-        subject: response
+        message: 'Удалено'
       })
     })
     .catch(err => {
@@ -130,79 +129,4 @@ const deleteBook = (req, res) => {
       error: err
     })
   }
-}
-
-const getUserBooks = (req, res) => {
-  const idUser = req.params.id
-  try{
-    Books.find( { booksForUser: idUser } )
-    .then(response => {
-      res.status(200).json({
-        success: true,
-        subject: response,
-        message: 'Ваши книги'
-      })  
-    })
-  }catch(err) {
-    res.status(400).json({
-      message: 'Произошла ошибка.. повторите позже',
-      success: false,
-      error: err
-    })
-  }
-}
-
-const setUserBook = async (req, res) => {
-  const { idUser, bookId } = req.body
-  try{
-    Books.findByIdAndUpdate(bookId,
-      { booksForUser: idUser }
-    , { new: true })
-    .then(response => {
-      res.status(200).json({
-        message: 'Добавлено',
-        success: true,
-        subject: response
-      })
-    })
-  }catch(err) {
-    res.status(400).json({
-      message: 'Произошла ошибка.. повторите позже',
-      success: false,
-      error: err
-    })
-  }
-}
-
-const deleteUserBook = (req, res) => {
-  const { userId, bookId } = req.body
-  try{
-    Books.updateOne({_id: bookId}, 
-      { $pull: { booksForUser: userId } }
-    )
-    .then(response => {
-      res.status(200).json({
-        message: 'Удалено',
-        success: true,
-        subject: bookId
-      })
-    })
-  }catch(err) {
-    res.status(400).json({
-      message: 'Произошла ошибка.. повторите позже',
-      success: false,
-      error: err
-    })
-  }
-}
-
-module.exports = { 
-  getAllBooks, 
-  addNewBook,
-  updateBook,
-  deleteBook,
-  getOneBook,
-  getUserBooks,
-  setUserBook,
-  deleteUserBook
 }
