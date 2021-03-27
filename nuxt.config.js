@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: 'Beta 0.1 %s - Научная библиотека имени. Касыма Тыныстанова',
+    titleTemplate: '[Beta 0.1] %s - Научная библиотека имени. Касыма Тыныстанова',
     title: 'Главная',
     meta: [
       { charset: 'utf-8' },
