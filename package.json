@@ -15,6 +15,7 @@
     "core-js": "^3.8.3",
     "moment": "^2.29.1",
     "nuxt": "^2.14.12",
+    "nuxt-start": "^2.15.3",
     "vee-validate": "^4.2.2",
     "vue-clamp": "^0.3.2"
   },
