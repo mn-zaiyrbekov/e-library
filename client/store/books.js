@@ -28,7 +28,7 @@ export const mutations = {
 export const actions = {
   async getAllBooks( { commit }, { limit } ) {
     try{
-      const res = await this.$axios.get('/books/books/', {
+      const res = await this.$axios.get('/books/', {
         params: {
           limits: limit
         }
@@ -43,7 +43,7 @@ export const actions = {
   },
   async getOneBook( { commit }, { id } ) {
     try{
-      const res = await this.$axios.get(`/books/books/${id}`)
+      const res = await this.$axios.get(`/books/${id}`)
       if(res.data.success) {
         commit('set_one_book', res.data.subject)
       }
@@ -54,7 +54,7 @@ export const actions = {
   },
   async editBookById( { commit }, { id, book } ) {
     try{
-      const res = await this.$axios.put(`/books/books/${id}`, book )
+      const res = await this.$axios.put(`/books/${id}`, book )
       if(res.data.success) {
         commit('set_books', res.data.subject)
       }
@@ -65,7 +65,7 @@ export const actions = {
   },
   async deleteBookById( { commit }, { id } ) {
     try {
-      const res = await this.$axios.delete(`/books/books/${id}`)
+      const res = await this.$axios.delete(`/books/${id}`)
       return res
     }catch (err) {
       commit('set_booksErrors', err)
