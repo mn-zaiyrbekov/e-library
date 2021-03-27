@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "node_modules/nuxt/bin/nuxt -c client/nuxt.config.js",
-    "build": "node_modules/nuxt/bin/nuxt build -c client/nuxt.config.js",
-    "start": "node_modules/nuxt/bin/nuxt start -c client/nuxt.config.js",
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
