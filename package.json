@@ -1,0 +1,24 @@
+{
+  "name": "e-lib-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth-next": "5.0.0-1613647907.37b1156",
+    "@nuxtjs/axios": "^5.12.5",
+    "@nuxtjs/pwa": "^3.3.5",
+    "core-js": "^3.8.3",
+    "moment": "^2.29.1",
+    "nuxt": "^2.14.12",
+    "vee-validate": "^4.2.2",
+    "vue-clamp": "^0.3.2"
+  },
+  "devDependencies": {
+    "@nuxtjs/vuetify": "^1.11.3"
+  }
+}
