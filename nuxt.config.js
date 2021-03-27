@@ -66,9 +66,9 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/user/login', method: 'post' },
-          logout: { url: '/user/logout', method: 'get' },
-          user: { url: '/user/login/profile', method: 'get' }
+          login: { url: '/users/login', method: 'post' },
+          logout: { url: '/users/logout', method: 'get' },
+          user: { url: '/users/login/profile', method: 'get' }
         }
       }
     },
