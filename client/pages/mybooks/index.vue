@@ -19,7 +19,7 @@
         />
       </v-col>
     </v-row>
-    <v-snackbar
+    <!-- <v-snackbar
       v-model="snackbar"
       :timeout="timeoute"
     >
@@ -33,7 +33,7 @@
           Закрыть
         </v-btn>
       </template>
-    </v-snackbar>
+    </v-snackbar> -->
   </div>
 </template>
 
@@ -47,7 +47,7 @@ export default {
     return {
       message: null,
       errors: null,
-      timeoute: 1500,
+      // timeoute: 1500,
       snackbar: false
     }
   },

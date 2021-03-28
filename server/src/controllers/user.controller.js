@@ -4,71 +4,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const { loginValidation, registerValidation } = require('../policy/user.validation')
 
-exports.getUserBooks = (req, res) => {
-  const idUser = req.params.id
-  try{
-    Books.find( { booksForUser: idUser } )
-    .then(response => {
-      res.status(200).json({
-        success: true,
-        subject: response,
-        message: 'Ваши книги'
-      })  
-    })
-  }catch(err) {
-    res.status(400).json({
-      message: 'Произошла ошибка.. повторите позже',
-      success: false,
-      error: err
-    })
-  }
-}
-
-exports.setUserBook = async (req, res) => {
-  const { idUser, bookId } = req.body
-  try{
-    Books.findByIdAndUpdate(bookId,
-      { booksForUser: idUser }
-    , { new: true })
-    .then(response => {
-      res.status(200).json({
-        message: 'Добавлено',
-        success: true,
-        subject: response
-      })
-    })
-  }catch(err) {
-    res.status(400).json({
-      message: 'Произошла ошибка.. повторите позже',
-      success: false,
-      error: err
-    })
-  }
-}
-
-exports.deleteUserBook = (req, res) => {
-  const { userId, bookId } = req.body
-  try{
-    Books.updateOne({_id: bookId}, 
-      { $pull: { booksForUser: userId } }
-    )
-    .then(response => {
-      res.status(200).json({
-        message: 'Удалено',
-        success: true,
-        subject: bookId
-      })
-    })
-  }catch(err) {
-    res.status(400).json({
-      message: 'Произошла ошибка.. повторите позже',
-      success: false,
-      error: err
-    })
-  }
-}
-
-
 exports.login = (req, res) => {
   const { error } = loginValidation(req)
   if (error) return res.status(400).json({message: error.details[0].message, success: false})
@@ -156,4 +91,11 @@ exports.register = async (req, res) => {
       error: err
     })
   }
+}
+
+
+exports.profile = async (req, res) => {
+  return res.json({
+    user: req.user
+  })
 }

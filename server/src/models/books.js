@@ -8,7 +8,7 @@ const BooksSchema = new Schema({
   booksYear: { type: String },
   booksLink: { type: String },
   booksGenre: { type: String },
-  booksForUser: [ {type: ObjectId, ref: 'user' } ],
+  booksForUser: [ {type: ObjectId, ref: 'users' } ],
   createDate: { type: Date, default: Date.now },
   downloads: { type: Number, default: 0 },
 })

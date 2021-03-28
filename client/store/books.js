@@ -22,6 +22,10 @@ export const mutations = {
   },
   set_one_errors(state, err) {
     state.booksErrors = err
+  },
+  set_delete_books(state, id) {
+    let index = state.books.findIndex(b => b._id == id)
+    state.books.splice(index, 1)
   }
 }
 
@@ -66,6 +70,9 @@ export const actions = {
   async deleteBookById( { commit }, { id } ) {
     try {
       const res = await this.$axios.delete(`/books/${id}`)
+      if(res.data.success) {
+        commit('set_delete_books', res.subject)
+      }
       return res
     }catch (err) {
       commit('set_booksErrors', err)

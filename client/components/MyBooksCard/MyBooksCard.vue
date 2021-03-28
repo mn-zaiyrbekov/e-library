@@ -59,7 +59,7 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-snackbar
+    <!-- <v-snackbar
       v-model="snackbar"
       :timeout="timeoute"
     >
@@ -73,7 +73,7 @@
           Закрыть
         </v-btn>
       </template>
-    </v-snackbar>
+    </v-snackbar> -->
   </div>
 </template>
 
@@ -85,8 +85,8 @@ export default {
   components: {VClamp},
   data: () => ({
     rating: 2.3,
-    messageSet: null,
-    timeoute: 1500,
+    // messageSet: null,
+    // timeoute: 1500,
     snackbar: false
   }),
   props: {

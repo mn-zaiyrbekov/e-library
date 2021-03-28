@@ -1,21 +1,13 @@
 const router = require('express').Router()
 const passport = require('passport')
-const { getUserBooks, deleteUserBook, setUserBook, login, register } = require('../controllers/user.controller')
+const { login, register, profile } = require('../controllers/user.controller')
 
-router.route('/')
-  .get(getUserBooks)
-  .post(setUserBook)
-  .put(deleteUserBook)
 
 router.route('/login')
   .post(login)
 
 router.route('/profile')
-  .get(passport.authenticate('jwt', { session: false } ), (req, res) => {
-    return res.json({
-      user: req.user
-    })
-  })
+  .get(passport.authenticate('jwt', {session: false}), profile)
 
 router.route('/register')
   .post(register)

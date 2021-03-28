@@ -101,7 +101,7 @@ import Forms from '@/components/forms/forms'
       async submitForm() {
         this.disabled = false
         try{
-          const res = await this.$axios.post('/books/books', this.book)
+          const res = await this.$axios.post('/books', this.book)
           if(res.data.success) {
             this.$router.push('/admin')
           }else{
