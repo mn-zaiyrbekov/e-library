@@ -41,7 +41,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://e-lib.server.libraryiksu.kg/api'
+    baseURL: 'https://fast-dusk-08351.herokuapp.com/api'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -68,7 +68,7 @@ export default {
         endpoints: {
           login: { url: '/users/login', method: 'post' },
           logout: { url: '/users/logout', method: 'get' },
-          user: { url: '/users/login/profile', method: 'get' }
+          user: { url: '/users/profile', method: 'get' }
         }
       }
     },

@@ -21,9 +21,9 @@ export const getters = {
 }
 
 export const actions = {
-  async setBooksForUser({commit}, {idUser,idBook}){
+  async setBooksForUser( { commit }, { idUser , idBook } ){
     try{
-      const res = await this.$axios.post(`/user`, { idUser: idUser, bookId: idBook })
+      const res = await this.$axios.post(`/users`, { idUser: idUser, bookId: idBook })
       return res
     }catch(err) {
       commit('set_user_booksError', err)
@@ -31,7 +31,7 @@ export const actions = {
   },
   async getUserBooks({commit}, idUser) {
     try {
-      const res = await this.$axios.get(`/user/${idUser}`)
+      const res = await this.$axios.get(`/users/${idUser}`)
       if(res.data.success) {
         commit('set_user_books', res.data.subject)
       }
@@ -41,7 +41,7 @@ export const actions = {
   },
   async deleteUserBooks({commit}, { idUser, bookID }) {
     try {
-      const res = await this.$axios.put('/user/', {
+      const res = await this.$axios.put('/users/', {
         userId: idUser,
         bookId: bookID
       })
