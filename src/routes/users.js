@@ -3,9 +3,11 @@ const passport = require('passport')
 const { getUserBooks, deleteUserBook, setUserBook, login, register } = require('../controllers/user.controller')
 
 router.route('/')
-  .get(getUserBooks)
   .post(setUserBook)
   .put(deleteUserBook)
+
+router.route('/:id')
+  .get(getUserBooks)
 
 router.route('/login')
   .post(login)
