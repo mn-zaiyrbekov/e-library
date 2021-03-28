@@ -95,7 +95,7 @@ export default {
         password: this.password
       }
       try{
-        const res = await this.$axios.post('/user/register', userInfo)
+        const res = await this.$axios.post('/users/register', userInfo)
         if(res.data.success) {
           this.$router.push('/login')
         }
