@@ -17,7 +17,8 @@
     "nuxt": "^2.14.12",
     "nuxt-start": "^2.15.3",
     "vee-validate": "^4.2.2",
-    "vue-clamp": "^0.3.2"
+    "vue-clamp": "^0.3.2",
+    "vue-social-sharing": "^3.0.7"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"

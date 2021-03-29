@@ -46,11 +46,24 @@
       </v-card-text>
       <v-divider class="mx-4"></v-divider>
       <v-card-actions>
+
+        <ShareNetwork
+          network="WhatsApp"
+          :url="booksLink"
+          :title="`${booksTitle} - Электронная библиотека | Научная библиотека ИГУ`"
+          :description="booksDesc"
+        >
+          <v-btn 
+            color="deep-purple lighten-2"
+            text
+          >
+            <v-icon title="поделится в Whatsapp">mdi-whatsapp</v-icon>
+          </v-btn>
+        </ShareNetwork>
         <v-btn
           color="deep-purple lighten-2"
           text
         >
-          <v-icon title="поделится">mdi-arrange-send-backward</v-icon>
           <v-icon
             class="mx-4"
             title="удалить"
@@ -136,4 +149,7 @@ export default {
 </script>
 
 <style scoped>
+.v-application a{
+  text-decoration: none;
+}
 </style>
