@@ -2,7 +2,7 @@
   <v-container fluid>
     <h2 class="pink darken-1 white--text py-2 pl-3">{{book.booksTitle}}</h2>
     <v-row>
-      <v-col class="col-4">
+      <v-col class="col-md-4 col-12 col">
         <v-card class="mt-6 pt-4">
           <v-img
             :src="`${book.booksImage}`"
@@ -19,7 +19,7 @@
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col class="col-8 pl-5">
+      <v-col class="col-md-8 col-12 pl-5">
         <v-list class="mt-8">
           <v-list-item-group class="pt-4">
             <v-list-item class="pl-0 mb-3">
