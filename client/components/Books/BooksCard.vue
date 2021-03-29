@@ -5,14 +5,6 @@
       max-width="300"
       :to="`/books/${idBook}`"
     >
-      <template slot="progress">
-        <v-progress-linear
-          color="deep-purple"
-          height="10"
-          indeterminate
-        ></v-progress-linear>
-      </template>
-
       <v-img
         width="220"
         height="280"
@@ -54,9 +46,6 @@
       </v-card-text>
       <v-divider class="mx-4"></v-divider>
       <v-card-actions v-if="this.$route.path !== '/admin/books'" :z-index="zIndex">
-        <v-btn link :href="bookLink" color="pink lighten-5">
-          <v-icon title="читать онлайн" color="deep-purple lighten-1">mdi-book-open</v-icon>
-        </v-btn>
         <v-btn
           color="pink lighten-5"
           v-if="$auth.user"
