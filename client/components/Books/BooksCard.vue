@@ -28,9 +28,13 @@
             empty-icon="$ratingFull"
             half-increments
             hover
+            readonly
             large
             small
           ></v-rating>
+          <div class="grey--text ml-4">
+            {{baseRaiting}}
+          </div>
         </v-row>
         <div
           class="my-5 description"
@@ -101,7 +105,7 @@ export default {
     bookGenre: { type: String, default: '' },
     bookYear: { type: String }, bookImage: { type: String, default: '' },
     bookLink: { type: String, default: '' },
-    homeRating: { type: Number, default: 0 },
+    homeRating: { type: Number, default: 4.3 },
   },
   data () {
     return{

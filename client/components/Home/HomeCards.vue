@@ -31,12 +31,7 @@
             hover
             readonly
             large
-            small
           ></v-rating>
-
-          <div class="grey--text ml-4">
-            {{baseRaiting}}
-          </div>
         </v-row>
         <div
           class="my-5 description"
