@@ -53,7 +53,7 @@
           :title="`${booksTitle} - Электронная библиотека | Научная библиотека ИГУ`"
           :description="booksDesc"
         >
-          <v-btn 
+          <v-btn
             color="deep-purple lighten-2"
             text
           >
@@ -72,21 +72,6 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <!-- <v-snackbar
-      v-model="snackbar"
-      :timeout="timeoute"
-    >
-      {{messageSet}}
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="blue"
-          text
-          v-bind="attrs"
-        >
-          Закрыть
-        </v-btn>
-      </template>
-    </v-snackbar> -->
   </div>
 </template>
 
@@ -98,8 +83,6 @@ export default {
   components: {VClamp},
   data: () => ({
     rating: 2.3,
-    // messageSet: null,
-    // timeoute: 1500,
     snackbar: false
   }),
   props: {

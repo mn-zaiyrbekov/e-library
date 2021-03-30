@@ -28,20 +28,15 @@
             empty-icon="$ratingFull"
             half-increments
             hover
-            readonly
             large
             small
           ></v-rating>
-
-          <div class="grey--text ml-4">
-            {{baseRaiting}}
-          </div>
         </v-row>
         <div
           class="my-5 description"
           ref="description"
         >
-            <v-clamp autoresize :max-lines="3" :title="description">{{description}}</v-clamp>
+          <v-clamp autoresize :max-lines="3" :title="description">{{description}}</v-clamp>
         </div>
       </v-card-text>
       <v-divider class="mx-4"></v-divider>
@@ -64,9 +59,7 @@
         <v-btn color="pink lighten-5" :to="`/admin/books/edit/${idBook}`">
           <v-icon title="редактировать" color="deep-purple lighten-1">mdi-pencil</v-icon>
         </v-btn>
-        <v-btn
-          color="pink lighten-5"
-        >
+        <v-btn color="pink lighten-5">
           <v-icon
             title="удалить"
             color="deep-purple lighten-1"
@@ -102,36 +95,13 @@ export default {
   name: 'BooksCards',
   components: {VClamp},
   props: {
-    idBook: {
-      type: String
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String,
-      default: ''
-    },
-    bookAuthor: {
-      type: String,
-      default: ''
-    },
-    bookGenre: {
-      type: String,
-      default: ''
-    },
-    bookYear: {
-      type: String
-    },
-    bookImage: {
-      type: String,
-      default: ''
-    },
-    bookLink: {
-      type: String,
-      default: ''
-    }
+    idBook: { type: String }, title: { type: String, default: '' },
+    description: { type: String, default: '' },
+    bookAuthor: { type: String, default: '' },
+    bookGenre: { type: String, default: '' },
+    bookYear: { type: String }, bookImage: { type: String, default: '' },
+    bookLink: { type: String, default: '' },
+    homeRating: { type: Number, default: 0 },
   },
   data () {
     return{
