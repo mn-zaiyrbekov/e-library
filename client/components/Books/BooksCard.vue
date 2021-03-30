@@ -44,21 +44,6 @@
         </div>
       </v-card-text>
       <v-divider class="mx-4"></v-divider>
-      <v-card-actions v-if="this.$route.path !== '/admin/books'" :z-index="zIndex">
-        <v-btn
-          color="pink lighten-5"
-          v-if="$auth.user"
-          @click.prevent="setUserBooks"
-          :disabled="disabled"
-        >
-          <v-icon
-            title="Добавить в мои книги"
-            color="deep-purple lighten-1">
-            mdi-bookmark-plus-outline
-          </v-icon>
-        </v-btn>
-      </v-card-actions>
-
       <v-card-actions v-if="this.$route.path === '/admin/books'">
         <v-btn color="pink lighten-5" :to="`/admin/books/edit/${idBook}`">
           <v-icon title="редактировать" color="deep-purple lighten-1">mdi-pencil</v-icon>
@@ -74,21 +59,6 @@
         </v-btn>
       </v-card-actions>
     </v-card>
-    <v-snackbar
-      v-model="snackbar"
-      :timeout="timeoute"
-    >
-      {{messageSet}}
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="blue"
-          text
-          v-bind="attrs"
-        >
-          Закрыть
-        </v-btn>
-      </template>
-    </v-snackbar>
   </div>
 </template>
 
@@ -110,33 +80,16 @@ export default {
   data () {
     return{
       baseRaiting: this.homeRating,
-      messageSet: null,
-      timeoute: 1500,
-      snackbar: false,
       zIndex: 10,
-      errorSet: null,
-      disabled: false
+      errorSet: null
     }
   },
   methods: {
     ...mapActions({
-      deleteBook: 'books/deleteBookById',
-      setBooksForUser: 'user/setBooksForUser'
+      deleteBook: 'books/deleteBookById'
     }),
     bookDelete(idBook) {
       this.deleteBook( { id: idBook } )
-    },
-    async setUserBooks() {
-      this.snackbar = true
-      const res = await this.setBooksForUser({
-        idBook: this.idBook,
-        idUser: this.$auth.user._id
-      })
-      if (res.data.success) {
-        this.messageSet = res.data.message
-      }else{
-        this.errorSet = res.data.error
-      }
     }
   }
 }

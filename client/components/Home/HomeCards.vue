@@ -17,7 +17,7 @@
         <v-clamp autoresize :max-lines="1">{{title}}</v-clamp>
       </v-card-title>
 
-      <v-card-text>
+      <v-card-text class="pl-0">
         <v-row
           align="center"
           class="mx-0"
@@ -34,7 +34,7 @@
           ></v-rating>
         </v-row>
         <div
-          class="my-5 description"
+          class="my-5 description pl-4"
           ref="description"
         >
           <v-clamp autoresize :max-lines="3" :title="description">{{description}}</v-clamp>

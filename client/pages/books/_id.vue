@@ -13,8 +13,17 @@
           <v-btn z-index="10" link :href="`${book.booksLink}`" color="pink lighten-5" >
             <v-icon title="читать онлайн" color="deep-purple lighten-1">mdi-book-open</v-icon>
           </v-btn>
-            <v-btn color="pink lighten-5" title="Добавить в мои книги">
-              <v-icon color="deep-purple lighten-1">mdi-bookmark-plus-outline</v-icon>
+            <v-btn
+              color="pink lighten-5"
+              v-if="$auth.user"
+              @click.prevent="setUserBooks"
+              :disabled="disabled"
+            >
+              <v-icon
+                title="Добавить в мои книги"
+                color="deep-purple lighten-1">
+                mdi-bookmark-plus-outline
+              </v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -45,6 +54,21 @@
         </v-list>
       </v-col>
     </v-row>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="timeoute"
+    >
+      {{messageSet}}
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="blue"
+          text
+          v-bind="attrs"
+        >
+          Закрыть
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -56,8 +80,10 @@ export default {
   middleware: ['auth'],
   data() {
     return {
-      limitSet: 4,
-      disabled: true
+      disabled: false,
+      snackbar: false,
+      messageSet: null,
+      timeoute: 1500,
     }
   },
   head() {
@@ -78,14 +104,23 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchOneBook: 'books/getOneBook'
+      fetchOneBook: 'books/getOneBook',
+      setBooksForUser: 'user/setBooksForUser'
     }),
     format_Date() {
       return moment()
     },
-    disableBtn() {
-      if (this.limitSet >= 4) {
-        this.disabled = true
+    async setUserBooks() {
+      this.snackbar = true
+      this.disabled = true
+      const res = await this.setBooksForUser({
+        idBook: this.book._id,
+        idUser: this.$auth.user._id
+      })
+      if (res.data.success) {
+        this.messageSet = res.data.message
+      }else{
+        this.errorSet = res.data.error
       }
     }
   },
