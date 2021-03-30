@@ -1,7 +1,7 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "",
+  "description": "description for test",
   "main": "index.js",
   "scripts": {
     "start": "node index.js NODE_ENV=production",

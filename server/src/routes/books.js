@@ -1,5 +1,8 @@
 const router = require('express').Router()
-const { getUserBooks, deleteUserBook, setUserBook, getAllBooks, addNewBook, updateBook, getOneBook, deleteBook } = require('../controllers/books.controller')
+const { 
+  getUserBooks, deleteUserBook, setUserBook, getAllBooks, 
+  addNewBook, updateBook, getOneBook, deleteBook 
+} = require('../controllers/books.controller')
 
 router.route('/')
   .get(getAllBooks)
