@@ -11,5 +11,8 @@ const BooksSchema = new Schema({
   booksForUser: [ {type: ObjectId, ref: 'users' } ],
   createDate: { type: Date, default: Date.now },
   downloads: { type: Number, default: 0 },
+  rating: [
+    { user: { type: ObjectId }, rate: { type: String }, default: ''}
+  ]
 })
 module.exports = model('books', BooksSchema)

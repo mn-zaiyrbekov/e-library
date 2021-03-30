@@ -152,7 +152,7 @@ exports.getUserBooks = (req, res) => {
   }
 }
 
-exports.setUserBook = async (req, res) => {
+exports.setUserBook = (req, res) => {
   const { idUser, bookId } = req.body
   try{
     Books.findByIdAndUpdate(bookId,
@@ -192,6 +192,22 @@ exports.deleteUserBook = (req, res) => {
       message: 'Произошла ошибка.. повторите позже',
       success: false,
       error: err
+    })
+  }
+}
+
+exports.setBooksRating = async (req, res) => {
+  let rating = req.body.rating
+  let bookId = req.params.id
+  try{
+    const response = await Books.findByIdAndUpdate(bookId, {
+
+    })
+  }catch(e) {
+    res.status(400).json({
+      message: 'Невозможно добавить рейтинг..',
+      success: false,
+      error: e
     })
   }
 }

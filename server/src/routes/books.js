@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const { 
   getUserBooks, deleteUserBook, setUserBook, getAllBooks, 
-  addNewBook, updateBook, getOneBook, deleteBook 
+  addNewBook, updateBook, getOneBook, deleteBook,
+  setBooksRating
 } = require('../controllers/books.controller')
 
 router.route('/')
@@ -19,5 +20,8 @@ router.route('/user')
 
 router.route('/user/:id')
   .get(getUserBooks)
+
+router.route('/book/rating/:id')
+  .post(setBooksRating)
 
 module.exports = router

@@ -23,10 +23,8 @@
           class="mx-0"
         >
           <v-rating
-            v-model="baseRaiting"
             color="pink"
             background-color="pink lighten-3"
-            empty-icon="$ratingFull"
             half-increments
             hover
             readonly
@@ -57,11 +55,9 @@ export default {
     bookYear: { type: String, default: '' },
     bookImage: { type: String, default: '' },
     bookLink: { type: String, default: '' },
-    homeRating: { type: Number, default: 4.3 },
   },
   data () {
     return{
-      baseRaiting: this.homeRating
     }
   },
 }

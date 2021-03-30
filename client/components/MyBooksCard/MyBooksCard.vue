@@ -27,14 +27,14 @@
             color="pink"
             background-color="pink lighten-3"
             empty-icon="$ratingFull"
-            half-increments
             hover
             large
             small
+            @input="setRating"
           ></v-rating>
 
           <div class="grey--text ml-4">
-            Rating
+            {{rating}}
           </div>
         </v-row>
         <div
@@ -82,7 +82,7 @@ export default {
   name: 'MyBooksCard',
   components: {VClamp},
   data: () => ({
-    rating: 2.3,
+    rating: 0,
     snackbar: false
   }),
   props: {
@@ -116,9 +116,10 @@ export default {
   },
   methods: {
     ...mapActions({
-      deleteUserBooks: 'user/deleteUserBooks'
+      deleteUserBooks: 'user/deleteUserBooks',
+      ratingSet: 'books/setBookRating'
     }),
-    async deleteBook(bookId) {
+    async deleteBook() {
       this.snackbar = true
       const res = await this.deleteUserBooks({idUser: this.$auth.user._id, bookID: bookId})
       if(res.data.success) {
@@ -126,6 +127,9 @@ export default {
       }else{
         this.messageSet = res.data.error
       }
+    },
+    async setRating() {
+      await this.ratingSet( { bookId: this.bookId, rating: this.rating } )
     }
   }
 }

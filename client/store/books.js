@@ -2,7 +2,8 @@ export const state = () => ({
   books: [],
   booksErrors: null,
   book: {},
-  booksStatus: ''
+  booksStatus: '',
+  booksRatingError: null
 })
 
 export const getters = {
@@ -26,7 +27,13 @@ export const mutations = {
   set_delete_books(state, id) {
     let index = state.books.findIndex(b => b._id == id)
     state.books.splice(index, 1)
-  }
+  },
+  // set_book_rating(state, rating) {
+  //   state.books
+  // },
+  // set_book_rating_error(state, err) {
+  //   state.booksRatingError = err
+  // }
 }
 
 export const actions = {
@@ -76,6 +83,19 @@ export const actions = {
       return res
     }catch (err) {
       commit('set_booksErrors', err)
+    }
+  },
+  async setBookRating( { commit }, { bookId, rating } ) {
+    try{
+      const res = await this.$axios.post(`/books/book/rating/${bookId}`, { 
+        rating: rating
+       } )
+      // return res
+      // if (rating.data.success) {
+      //   commit('set_book_rating', res.subject)
+      // }
+    }catch(e) {
+      // commit('set_book_rating_error', e)
     }
   }
 }
