@@ -121,7 +121,7 @@ export default {
     }),
     async deleteBook() {
       this.snackbar = true
-      const res = await this.deleteUserBooks({idUser: this.$auth.user._id, bookID: bookId})
+      const res = await this.deleteUserBooks({idUser: this.$auth.user._id, bookID: this.bookId})
       if(res.data.success) {
         this.messageSet = res.data.message
       }else{
