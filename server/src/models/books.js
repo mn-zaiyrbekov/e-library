@@ -12,7 +12,7 @@ const BooksSchema = new Schema({
   createDate: { type: Date, default: Date.now },
   downloads: { type: Number, default: 0 },
   rating: [
-    { user: { type: ObjectId }, rate: { type: String }, default: ''}
+    { type: Number, default: 0 }
   ]
 })
 module.exports = model('books', BooksSchema)

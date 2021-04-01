@@ -78,7 +78,7 @@ export const actions = {
     try {
       const res = await this.$axios.delete(`/books/${id}`)
       if(res.data.success) {
-        commit('set_delete_books', res.subject)
+        commit('set_delete_books', res.data.subject)
       }
       return res
     }catch (err) {

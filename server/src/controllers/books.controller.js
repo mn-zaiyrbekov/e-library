@@ -200,8 +200,17 @@ exports.setBooksRating = async (req, res) => {
   let rating = req.body.rating
   let bookId = req.params.id
   try{
-    const response = await Books.findByIdAndUpdate(bookId, {
-
+    Books.findByIdAndUpdate(bookId, {
+      $push: { rating: rating }
+    })
+    .then(response => {
+      res.status(200).json( { message: 'Рейгинг записан' } )
+    })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Не удалось доабвить рейтинг',
+        error: err
+      })
     })
   }catch(e) {
     res.status(400).json({
