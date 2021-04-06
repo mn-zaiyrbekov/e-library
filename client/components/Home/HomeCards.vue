@@ -22,14 +22,7 @@
           align="center"
           class="mx-0"
         >
-          <v-rating
-            v-model="bookRating"
-            color="pink"
-            background-color="pink lighten-3"
-            hover
-            readonly
-            large
-          ></v-rating>
+          <Ratings :bookRating="bookRating"/>
         </v-row>
         <div
           class="my-5 description pl-4"
@@ -44,9 +37,10 @@
 
 <script>
 import VClamp from 'vue-clamp'
+import Ratings from '@/components/Globals/Ratings'
 export default {
   name: 'HomeCards',
-  components: {VClamp},
+  components: {VClamp, Ratings},
   props: {
     id: { type: String }, title: { type: String, default: '' },
     description: { type: String, default: '' },

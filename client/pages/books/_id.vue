@@ -31,9 +31,6 @@
       <v-col class="col-md-8 col-12 pl-5">
         <v-list class="mt-8">
           <v-list-item-group class="pt-4">
-            <v-list-item class="pl-0 mb-3">
-              {{book.booksDesc}}
-            </v-list-item>
             <v-list-item class="pl-0">
               <v-icon class="mr-2">mdi-account-edit</v-icon>
               <v-list-item-subtitle>Автор: {{book.booksAuthor}}</v-list-item-subtitle>
@@ -49,6 +46,9 @@
             <v-list-item class="pl-0">
               <v-icon class="mr-2">mdi-calendar-check</v-icon>
               <v-list-item-subtitle>добавлен: {{format_Date().format('MMM D Y')}}</v-list-item-subtitle>
+            </v-list-item>
+            <v-list-item class="pl-0 mb-3">
+              Аннотация: {{book.booksDesc}}
             </v-list-item>
           </v-list-item-group>
         </v-list>

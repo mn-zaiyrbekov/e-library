@@ -29,13 +29,8 @@
             empty-icon="$ratingFull"
             hover
             large
-            small
             @input="setRating"
           ></v-rating>
-
-          <div class="grey--text ml-4">
-            {{Math.floor(bookRating)}}
-          </div>
         </v-row>
         <div
           class="my-5 description"

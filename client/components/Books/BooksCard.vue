@@ -16,25 +16,12 @@
         <v-clamp autoresize :max-lines="1">{{title}}</v-clamp>
       </v-card-title>
 
-      <v-card-text>
+      <v-card-text class="pl-0">
         <v-row
           align="center"
           class="mx-0"
-        >
-          <v-rating
-            v-model="bookRating"
-            color="pink"
-            background-color="pink lighten-3"
-            empty-icon="$ratingFull"
-            half-increments
-            hover
-            readonly
-            large
-            small
-          ></v-rating>
-          <div class="grey--text ml-4">
-            {{baseRaiting}}
-          </div>
+        > 
+        <Ratings :bookRating="bookRating"/>
         </v-row>
         <div
           class="my-5 description"
@@ -64,10 +51,11 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Ratings from '@/components/Globals/Ratings'
 import VClamp from 'vue-clamp'
 export default {
   name: 'BooksCards',
-  components: {VClamp},
+  components: { VClamp, Ratings },
   props: {
     idBook: { type: String }, title: { type: String, default: '' },
     description: { type: String, default: '' },
@@ -79,7 +67,6 @@ export default {
   },
   data () {
     return{
-      baseRaiting: this.homeRating,
       zIndex: 10,
       errorSet: null
     }
