@@ -1,11 +1,12 @@
 const Books = require('../models/books')
 
-exports.getAllBooks = (req, res) => {
+exports.getAllBooks = async (req, res) => {
   let limit = req.query.limits
   try{
     Books.find()
     .limit(Number(limit))
     .then(response => {
+      books = response
       res.status(200).json({
         success: true,
         message: 'Вывод всех книг',

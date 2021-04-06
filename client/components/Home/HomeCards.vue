@@ -23,9 +23,9 @@
           class="mx-0"
         >
           <v-rating
+            v-model="bookRating"
             color="pink"
             background-color="pink lighten-3"
-            half-increments
             hover
             readonly
             large
@@ -55,11 +55,17 @@ export default {
     bookYear: { type: String, default: '' },
     bookImage: { type: String, default: '' },
     bookLink: { type: String, default: '' },
+    rating: { type: Array }
   },
   data () {
     return{
     }
   },
+  computed: {
+    bookRating() {
+      return this.rating.reduce((a, b) => a + b / 5, 0)
+    }
+  }
 }
 </script>
 

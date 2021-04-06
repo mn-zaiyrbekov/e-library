@@ -22,7 +22,7 @@
           class="mx-0"
         >
           <v-rating
-            v-model="baseRaiting"
+            v-model="bookRating"
             color="pink"
             background-color="pink lighten-3"
             empty-icon="$ratingFull"
@@ -75,13 +75,18 @@ export default {
     bookGenre: { type: String, default: '' },
     bookYear: { type: String }, bookImage: { type: String, default: '' },
     bookLink: { type: String, default: '' },
-    homeRating: { type: Number, default: 4.3 },
+    rating: { type: Array }
   },
   data () {
     return{
       baseRaiting: this.homeRating,
       zIndex: 10,
       errorSet: null
+    }
+  },
+  computed: {
+    bookRating() {
+      return this.rating.reduce((a, b) => a + b / 5, 0)
     }
   },
   methods: {

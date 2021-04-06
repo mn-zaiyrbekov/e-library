@@ -24,6 +24,7 @@
           :bookYear="book.booksYear"
           :bookImage="book.booksImage"
           :bookLink="book.booksLink"
+          :rating="book.rating"
         />
       </v-col>
     </v-row>

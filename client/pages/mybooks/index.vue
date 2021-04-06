@@ -16,6 +16,7 @@
           :booksDesc="book.booksDesc"
           :booksAuthor="book.booksAuthor"
           :booksYear="book.booksYear"
+          :rating="book.rating"
         />
       </v-col>
     </v-row>

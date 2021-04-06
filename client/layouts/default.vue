@@ -61,7 +61,7 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <nuxt :homeRating="homeRating"/>
+        <nuxt/>
       </v-container>
     </v-main>
     <UserBar
@@ -78,7 +78,6 @@ export default {
   name: 'defaultLayouts',
   data () {
     return {
-      homeRating: 4,
       clipped: false,
       drawer: false,
       fixed: false,

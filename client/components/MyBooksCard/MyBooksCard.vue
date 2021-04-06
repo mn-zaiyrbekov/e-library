@@ -23,7 +23,7 @@
         >
           <v-card-text class="px-0">Ваша оценка:</v-card-text>
           <v-rating
-            v-model="rating"
+            v-model="ratingValue"
             color="pink"
             background-color="pink lighten-3"
             empty-icon="$ratingFull"
@@ -34,7 +34,7 @@
           ></v-rating>
 
           <div class="grey--text ml-4">
-            {{rating}}
+            {{Math.floor(bookRating)}}
           </div>
         </v-row>
         <div
@@ -81,10 +81,11 @@ import VClamp from 'vue-clamp'
 export default {
   name: 'MyBooksCard',
   components: {VClamp},
-  data: () => ({
-    rating: 0,
-    snackbar: false
-  }),
+  data() {
+    return {
+      ratingValue: 0
+    }
+  },
   props: {
     bookId: {
       type: String
@@ -112,6 +113,12 @@ export default {
     },
     booksDesc: {
       type: String
+    },
+    rating: { type: Array }
+  },
+  computed: {
+    bookRating() {
+      return this.ratingValue = this.rating.reduce((a, b) => a + b / 5, 0)
     }
   },
   methods: {
