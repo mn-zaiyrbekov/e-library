@@ -34,6 +34,9 @@ export const mutations = {
     let index = state.books.findIndex(b => b._id == id)
     state.books.splice(index, 1)
   },
+  set_book_rating_error(state, err) {
+    state.booksRatingError = err
+  },
   // Books Genre
   set_books_genre(state, bookGenre ) {
     state.bookGenre = bookGenre
@@ -106,12 +109,8 @@ export const actions = {
       const res = await this.$axios.post(`/books/book/rating/${bookId}`, { 
         rating: rating
        } )
-      // return res
-      // if (rating.data.success) {
-      //   commit('set_book_rating', res.subject)
-      // }
     }catch(e) {
-      // commit('set_book_rating_error', e)
+      commit('set_book_rating_error', e)
     }
   },
   async getAllGenreBooks( { commit } ) {

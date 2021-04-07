@@ -103,9 +103,6 @@ export default {
     booksAuthor: {
       type: String
     },
-    booksGenre: {
-      type: String
-    },
     booksDesc: {
       type: String
     },
@@ -131,7 +128,7 @@ export default {
       }
     },
     async setRating() {
-      await this.ratingSet( { bookId: this.bookId, rating: this.rating } )
+      await this.ratingSet( { bookId: this.bookId, rating: this.ratingValue } )
     }
   }
 }
