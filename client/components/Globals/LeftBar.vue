@@ -6,6 +6,7 @@
     fixed
     app
     dark
+    width="330"
   >
     <v-list>
       <v-list-item
@@ -21,7 +22,7 @@
         </v-list-item-content>
       </v-list-item>
       
-        <v-list-group>
+        <v-list-group no-action>
           <template v-slot:activator>
             <v-list-item-content>
               <v-list-item-title>
@@ -37,11 +38,11 @@
             v-for="(genre, key) in genre"
             :key="key"
             link
-            :to="`/books/${genre._id}`"
+            :to="`/books/category/${genre._id}`"
             exact
           >
             <v-list-item-subtitle class="white--text">
-              <v-icon class="mr-2">mdi-book-check-outline</v-icon>
+              <v-icon class="mr-2">mdi-bookmark-multiple-outline</v-icon>
               {{genre.name}}
             </v-list-item-subtitle>
           </v-list-item>

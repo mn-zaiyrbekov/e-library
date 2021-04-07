@@ -62,7 +62,7 @@ exports.getBookForGenre = (req, res) => {
       res.status(200).json({
         success: true,
         message: 'Вывод книг по жанру',
-        data: response
+        subject: response
       })
     })
     .catch(error => {

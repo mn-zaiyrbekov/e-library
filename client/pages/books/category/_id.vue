@@ -1,5 +1,6 @@
 <template>
   <div>
+    Книги категории
     <v-row>
       <v-col
         cols="12"
@@ -21,49 +22,30 @@
 
       </v-col>
     </v-row>
-    <div class="text-center">
-      <!-- <v-btn v-on:click="prevePage" v-if="$nuxt.$route.query.page > 1">
-        Назад
-      </v-btn>
-      <v-btn v-on:click="nextPage">
-        Далее
-      </v-btn> -->
-    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
 import BooksCard from '@/components/Books/BooksCard'
+import { mapGetters, mapActions } from 'vuex'
 export default {
-  name: "Booksmain",
-  head() {
-    return {
-      title: 'Список книг'
-    }
-  },
+  components: { BooksCard },
   computed: {
     ...mapGetters({
-      books: 'books/getBooks'
+      books: 'books/getBooksByGenre'
     })
   },
-  data() {
-    return {
-      limitBooks: 14
-    }
-  },
-  components: {BooksCard},
   methods: {
     ...mapActions({
-      fetchBooks: 'books/getAllBooks'
+      fetchBookByGenre: 'books/getBookByGenre'
     })
   },
   created() {
-    this.fetchBooks( { limit: this.limitBooks } )
+    this.fetchBookByGenre( { idGenre: this.$route.params.id } )
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>

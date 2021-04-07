@@ -131,9 +131,6 @@ export default {
     this.getOneBookGenre({
       idGenre: this.book.booksGenre
     })
-  },
-  mounted() {
-    console.log(this.getGenre)
   }
 }
 </script>

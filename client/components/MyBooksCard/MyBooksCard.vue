@@ -55,6 +55,18 @@
             <v-icon title="поделится в Whatsapp">mdi-whatsapp</v-icon>
           </v-btn>
         </ShareNetwork>
+        <ShareNetwork
+          network="Email"
+          :url="booksLink"
+          :title="`${booksTitle} - Электронная библиотека | Научная библиотека ИГУ`"
+        >
+          <v-btn
+            color="deep-purple lighten-2"
+            text
+          >
+            <v-icon title="поделится в Email">mdi-email-edit-outline</v-icon>
+          </v-btn>
+        </ShareNetwork>
         <v-btn
           color="deep-purple lighten-2"
           text

@@ -21,7 +21,7 @@
           align="center"
           class="mx-0"
         > 
-        <Ratings :bookRating="bookRating" v-if="!this.$route.path === '/admin/books'"/>
+        <Ratings :bookRating="bookRating" v-if="!this.$route.path == '/admin/books'"/>
         </v-row>
         <div
           class="my-5 description"
