@@ -2,13 +2,18 @@ export const state = () => ({
   books: [],
   booksErrors: null,
   book: {},
-  booksStatus: '',
-  booksRatingError: null
+  booksRatingError: null,
+  booksGenreError: null,
+  bookGenre: [],
+  bookOneGenre: {},
+  bookOneGenreError: null
 })
 
 export const getters = {
   getBooks: ( state ) => state.books,
-  getOneBook: ( state ) => state.book
+  getOneBook: ( state ) => state.book,
+  getBookGenre: ( state ) => state.bookGenre,
+  getOneBookGenre: ( state ) => state.bookOneGenre
 }
 
 export const mutations = {
@@ -18,6 +23,7 @@ export const mutations = {
   set_booksErrors(state, error) {
     state.booksErrors = error
   },
+  // ONE BOOKS
   set_one_book(state, book) {
     state.book = book
   },
@@ -28,12 +34,22 @@ export const mutations = {
     let index = state.books.findIndex(b => b._id == id)
     state.books.splice(index, 1)
   },
-  // set_book_rating(state, rating) {
-  //   state.books
-  // },
-  // set_book_rating_error(state, err) {
-  //   state.booksRatingError = err
-  // }
+  // Books Genre
+  set_books_genre(state, bookGenre ) {
+    state.bookGenre = bookGenre
+  },
+  set_book_genre_error(state, error) {
+    state.booksGenreError = error
+  },
+  set_book_genre_byId(state, genre) {
+    state.bookOneGenre = genre
+  },
+  set_one_book_genre(state, genre) {
+    state.bookOneGenre = genre
+  },
+  set_book_one_genre_error(state, error) {
+    state.bookOneGenreError = error
+  }
 }
 
 export const actions = {
@@ -96,6 +112,30 @@ export const actions = {
       // }
     }catch(e) {
       // commit('set_book_rating_error', e)
+    }
+  },
+  async getAllGenreBooks( { commit } ) {
+    try{
+      const response = await this.$axios.get('/booksgenre')
+      if(response.data.success) {
+        commit('set_books_genre', response.data.subject)
+      }else{
+        commit('set_book_genre_error', response.error)
+      }
+    }catch(e) {
+      commit('set_book_genre_error', e)
+    }
+  },
+  async getOneGenreBook( { commit }, { idGenre }) {
+    try{
+      const response = await this.$axios.get(`/booksgenre/${idGenre}`)
+      if(response.data.success) {
+        commit('set_one_book_genre', response.data.subject)
+      }else{
+        commit('set_book_one_genre_error', response.error)
+      }
+    }catch(e) {
+      commit('set_book_one_genre_error', e)
     }
   }
 }

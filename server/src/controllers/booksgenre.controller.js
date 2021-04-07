@@ -9,7 +9,7 @@ exports.addBooksGenre = (req, res) => {
       res.status(200).json({
         success: true,
         message: 'Успешно добавлено',
-        name: response
+        subject: response
       })
     })
     .catch(error => {
@@ -35,13 +35,39 @@ exports.getAllBookGenre = (req, res) => {
       res.status(200).json({
         success: true,
         message: 'Вывод всех жанров',
-        name: response
+        subject: response
       })
     })
   }catch(e) {
     res.status(400).json({
       success: false,
       message: 'Произошла неизвестная ошибка',
+      error: e
+    })
+  }
+}
+exports.getOneBookGenre = (req, res) => {
+  const idGenre = req.params.id
+  try{
+    BooksGenre.findById(idGenre)
+    .then(response => {
+      res.status(200).json({
+        success: true,
+        message: 'Ввывод одного жанра',
+        subject: response
+      })
+    })
+    .catch(error => {
+      res.status(400).json({
+        success: false,
+        message: 'Не такого жанра',
+        error: error
+      })
+    })
+  }catch(e) {
+    res.status(400).json({
+      success: false,
+      message: 'Произошла ошибка при выводе одного жанра',
       error: e
     })
   }

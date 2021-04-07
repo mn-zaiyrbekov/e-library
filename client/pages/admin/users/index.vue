@@ -7,7 +7,7 @@
 <script>
   export default {
     name: 'adminusers',
-    layout: 'admin'
+    layout: 'adminlayout'
   }
 </script>
 

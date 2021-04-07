@@ -36,7 +36,7 @@ import { mapGetters, mapActions } from 'vuex'
 import BooksCard from '@/components/Books/BooksCard'
 export default {
   name: "adminbooks",
-  layout: 'admin',
+  layout: 'adminlayout',
   head() {
     return {
       title: 'Список книг'

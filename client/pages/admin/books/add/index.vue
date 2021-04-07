@@ -42,12 +42,16 @@
             label="Ссылка до самой книги"
             required
           ></v-text-field>
-          <v-text-field
-            v-model="book.booksGenre"
-            :error-messages="errors"
-            label="Жанр"
-            required
-          ></v-text-field>
+          <div>
+            <v-select
+              v-model="book.booksGenre"
+              :items="bookGenre"
+              item-text="name"
+              item-value="_id"
+              label="Выберите жанр"
+              multiple            
+            ></v-select>
+          </div>
 
             <v-btn
               color="brown"
@@ -71,48 +75,60 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Forms from '@/components/forms/forms'
-  export default {
-    name: 'insert',
-    layout: 'admin',
-    components: {Forms},
-    data() {
-      return {
-        errors: null,
-        inError: null,
-        disabled: true,
-        book: {
-          booksTitle: '',
-          booksDesc: '',
-          booksImage: '',
-          booksAuthor: '',
-          booksYear: '',
-          booksGenre: '',
-          booksLink: ''
-        }
-      }
-    },
-    head() {
-      return {
-        title: 'Добавить книгу'
-      }
-    },
-    methods: {
-      async submitForm() {
-        this.disabled = false
-        try{
-          const res = await this.$axios.post('/books', this.book)
-          if(res.data.success) {
-            this.$router.push('/admin')
-          }else{
-            // this.errors = res.data.message
-          }
-        }catch(err) {
-          // this.inError = res.data.message
-        }
+export default {
+  name: 'insert',
+  layout: 'adminlayout',
+  components: {Forms},
+  data() {
+    return {
+      errors: null,
+      inError: null,
+      disabled: true,
+      book: {
+        booksTitle: '',
+        booksDesc: '',
+        booksImage: '',
+        booksAuthor: '',
+        booksYear: '',
+        booksGenre: '',
+        booksLink: ''
       }
     }
+  },
+  head() {
+    return {
+      title: 'Добавить книгу'
+    }
+  },
+  computed: {
+    ...mapGetters({
+      'bookGenre': 'books/getBookGenre'
+    }),
+  },
+  methods: {
+    ...mapActions({
+      'fetchBooksGenre': 'books/getAllGenreBooks'
+    }),
+    async submitForm() {
+      this.disabled = false
+      try{
+        const res = await this.$axios.post('/books', this.book)
+        if(res.data.success) {
+          this.$router.push('/admin')
+        }else{
+          // this.errors = res.data.message
+        }
+      }catch(err) {
+        // this.inError = res.data.message
+      }
+    }
+  },
+  created() {
+    this.fetchBooksGenre()
   }
+}
 </script>
 
 <style scoped>

@@ -41,7 +41,7 @@
             </v-list-item>
             <v-list-item class="pl-0">
               <v-icon class="mr-2">mdi-book-information-variant</v-icon>
-              <v-list-item-subtitle>Жанр: {{book.booksGenre}}</v-list-item-subtitle>
+              <v-list-item-subtitle>Жанр: {{getGenre.name}}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item class="pl-0">
               <v-icon class="mr-2">mdi-calendar-check</v-icon>
@@ -99,13 +99,15 @@ export default {
   },
   computed: {
     ...mapGetters({
-      book: 'books/getOneBook'
+      book: 'books/getOneBook',
+      getGenre: 'books/getOneBookGenre'
     })
   },
   methods: {
     ...mapActions({
       fetchOneBook: 'books/getOneBook',
-      setBooksForUser: 'user/setBooksForUser'
+      setBooksForUser: 'user/setBooksForUser',
+      getOneBookGenre: 'books/getOneGenreBook'
     }),
     format_Date() {
       return moment()
@@ -125,7 +127,13 @@ export default {
     }
   },
   created() {
-    this.fetchOneBook({id:this.$route.params.id})
+    this.fetchOneBook( { id:this.$route.params.id } )
+    this.getOneBookGenre({
+      idGenre: this.book.booksGenre
+    })
+  },
+  mounted() {
+    console.log(this.getGenre)
   }
 }
 </script>
