@@ -2,13 +2,16 @@ const router = require('express').Router()
 const { 
   getUserBooks, deleteUserBook, setUserBook, getAllBooks, 
   addNewBook, updateBook, getOneBook, deleteBook,
-  setBooksRating, getBooksRating
+  setBooksRating, getBookForGenre
 } = require('../controllers/books.controller')
 
 router.route('/')
   .get(getAllBooks)
   .post(addNewBook)
   .put(deleteUserBook)
+
+router.route('/genre/:id')
+  .get(getBookForGenre)
 
 router.route('/:id')
   .get(getOneBook)

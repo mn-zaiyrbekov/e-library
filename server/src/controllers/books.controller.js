@@ -54,6 +54,33 @@ exports.getOneBook = (req, res) => {
   }
 }
 
+exports.getBookForGenre = (req, res) => {
+  const genreId = req.params.id
+  try{
+    Books.find({booksGenre: genreId})
+    .then(response => {
+      res.status(200).json({
+        success: true,
+        message: 'Вывод книг по жанру',
+        data: response
+      })
+    })
+    .catch(error => {
+      res.status(400).json({
+        success: true,
+        message: 'Произошла ошибка при выводе книг по жанрам',
+        error: error
+      })
+    })
+  }catch(e) {
+    res.status(400).json({
+      success: false,
+      message: 'Произошла ошибка при выведении по жанрам',
+      error: e
+    })
+  }
+}
+
 exports.addNewBook = (req, res) => {
   const book = req.body
   try{

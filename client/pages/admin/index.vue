@@ -9,7 +9,6 @@
     name: 'adminpage',
     layout: 'admin',
     
-    
   }
 </script>
 

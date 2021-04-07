@@ -21,7 +21,7 @@
           align="center"
           class="mx-0"
         > 
-        <Ratings :bookRating="bookRating"/>
+        <Ratings :bookRating="bookRating" v-if="!this.$route.path === '/admin/books'"/>
         </v-row>
         <div
           class="my-5 description"
@@ -60,7 +60,7 @@ export default {
     idBook: { type: String }, title: { type: String, default: '' },
     description: { type: String, default: '' },
     bookAuthor: { type: String, default: '' },
-    bookGenre: { type: String, default: '' },
+    bookGenre: { type: Array, default: '' },
     bookYear: { type: String }, bookImage: { type: String, default: '' },
     bookLink: { type: String, default: '' },
     rating: { type: Array }
