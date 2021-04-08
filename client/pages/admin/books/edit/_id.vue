@@ -37,25 +37,28 @@
             label="Ссылка до самой книги"
             required
           ></v-text-field>
-          <v-text-field
+          <v-select
             v-model="book.booksGenre"
-            label="Жанр"
-            required
-          ></v-text-field>
+            :items="bookGenre"
+            item-text="name"
+            item-value="_id"
+            label="Выберите жанр"
+            multiple            
+          ></v-select>
 
-            <v-btn
-              color="brown"
-              class="white--text"
-              type="submit"
+          <v-btn
+            color="brown"
+            class="white--text"
+            type="submit"
+          >
+            Отредактировать
+            <v-icon
+              right
+              dark
             >
-              Отредактировать
-              <v-icon
-                right
-                dark
-              >
-                mdi-cloud-upload
-              </v-icon>
-            </v-btn>
+              mdi-cloud-upload
+            </v-icon>
+          </v-btn>
         </form>
       </v-col>
     </v-row>
@@ -74,13 +77,15 @@ import { mapGetters, mapActions } from 'vuex'
     },
     computed: {
       ...mapGetters({
-        book: 'books/getOneBook'
+        book: 'books/getOneBook',
+        bookGenre: 'books/getBookGenre'
       })
     },
     methods: {
       ...mapActions({
         getOneBook: 'books/getOneBook',
-        editBookById: 'books/editBookById'
+        editBookById: 'books/editBookById',
+        fetchBooksGenre: 'books/getAllGenreBooks'
       }),
       async editBook() {
         const res = await this.editBookById({
@@ -96,6 +101,7 @@ import { mapGetters, mapActions } from 'vuex'
     },
     created() {
       this.getOneBook( { id: this.$route.params.id } )
+      this.fetchBooksGenre()
     }
   }
 </script>
