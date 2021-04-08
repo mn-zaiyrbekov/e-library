@@ -64,6 +64,7 @@ export default {
     links: [
       ['mdi-home', 'Главная', '/admin'],
       ['mdi-bookshelf', 'Раздел книги', '/admin/books'],
+      ['mdi-book-check', 'Жанры', '/admin/genre'],
       ['mdi-account', 'Пользователи', '/admin/users']
     ],
   }),

@@ -44,7 +44,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://e-lib.server.libraryiksu.kg/api'
+    baseURL: 'http://localhost:5000/api'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
