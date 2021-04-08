@@ -44,9 +44,22 @@
             dark
             color="brown"
             to="/admin/books/add"
+            title="Добавиь книгу"
           >
             <v-icon dark>
-              mdi-plus
+              mdi-book-plus-multiple
+            </v-icon>
+          </v-btn>
+          <v-btn
+            class="mx-2"
+            fab
+            dark
+            color="brown"
+            to="/admin/genre/add"
+            title="Добавиь Жанр"
+          >
+            <v-icon dark>
+              mdi-puzzle-plus
             </v-icon>
           </v-btn>
         </div>

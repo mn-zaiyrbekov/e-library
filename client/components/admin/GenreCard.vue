@@ -9,7 +9,7 @@
           <v-icon class="mr-2">mdi-star-box</v-icon>
           {{name}}
         </p>
-        <p>adjective</p>
+        <p>Количество книг в данном жанре [ 20 ]</p>
         <div class="text--primary">
           well meaning and kindly.<br>
           "a benevolent smile"

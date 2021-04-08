@@ -1,10 +1,10 @@
 const BooksGenre = require('../models/booksgenre')
 
 exports.addBooksGenre = (req, res) => {
-  const nameGenre = req.body
+  const genre = req.body
   try{
-    const genre = new BooksGenre(nameGenre)
-    genre.save()
+    const newGenre = new BooksGenre(genre)
+    newGenre.save()
     .then(response => {
       res.status(200).json({
         success: true,

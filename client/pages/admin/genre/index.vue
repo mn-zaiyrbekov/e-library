@@ -2,9 +2,7 @@
   <div>
     <v-row>
       <v-col class="col-md-6 col-12">
-        <v-card-title class="orange accent-4 white--text">
-          Жанры книг
-        </v-card-title>
+        <VcardTitle title="Жанры книг"/>
       </v-col>
     </v-row>
 
@@ -27,10 +25,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import GenreCard from '@/components/admin/GenreCard'
+import VcardTitle from '@/components/Globals/VcardTitle'
 export default {
   name: 'genre',
   layout: 'adminlayout',
-  components: { GenreCard },
+  components: { GenreCard, VcardTitle },
   head() {
     return {
       title: 'Жанры книг'

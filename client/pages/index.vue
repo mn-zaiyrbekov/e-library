@@ -2,10 +2,7 @@
   <div>
     <v-row>
       <v-col class="col-md-6 col-12">
-        <v-card-title class="pink white--text">
-          <v-icon class="mr-5 white--text">mdi-star-shooting</v-icon>
-          Популярные | читаемые
-        </v-card-title>
+        <VcardTitle title="Популярные | читаемые" icon="star-shooting"/>
       </v-col>
     </v-row>
     <v-row>
@@ -39,11 +36,13 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import VcardTitle from '@/components/Globals/VcardTitle'
 import HomeCards from '@/components/Home/HomeCards'
 export default {
   name: 'Home',
   components: {
-    HomeCards
+    HomeCards,
+    VcardTitle
   },
   data() {
     return {
