@@ -9,12 +9,23 @@
     </v-row>
 
     <v-row class="mt-12">
-      <GenreCard />
+      <v-col 
+        cols="12" 
+        md="4"
+        v-for="(genre, key) in genres"
+        :key="key"
+      >
+        <GenreCard 
+          :name="genre.name"
+          :idGenre="genre._id"
+        />
+      </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import GenreCard from '@/components/admin/GenreCard'
 export default {
   name: 'genre',
@@ -24,6 +35,19 @@ export default {
     return {
       title: 'Жанры книг'
     }
+  },
+  computed: {
+    ...mapGetters({
+      genres: 'books/getBookGenre'
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetchGenre: 'books/getAllGenreBooks'
+    })
+  },
+  created() {
+    this.fetchGenre()
   }
 }
 </script>

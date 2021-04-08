@@ -5,9 +5,9 @@
       max-width="344"
     >
       <v-card-text>
-        <div>Word of the Day</div>
-        <p class="display-1 text--primary">
-          be•nev•o•lent
+        <p class="text--primary subtitle">
+          <v-icon class="mr-2">mdi-star-box</v-icon>
+          {{name}}
         </p>
         <p>adjective</p>
         <div class="text--primary">
@@ -15,25 +15,22 @@
           "a benevolent smile"
         </div>
       </v-card-text>
-      <v-card-actions>
-        <v-btn
-          text
-          color="deep-purple accent-4"
-        >
-          Learn More
-        </v-btn>
-      </v-card-actions>
     </v-card>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'genrecards',
-    layout: 'adminlayout'
+
+export default {
+  name: 'genrecards',
+  layout: 'adminlayout',
+  props: {
+    name: { type: String },
+    idGenre: { type: String }
   }
+}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
