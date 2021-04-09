@@ -41,7 +41,7 @@ export default {
     '@nuxtjs/auth-next',
     'vue-social-sharing/nuxt'
   ],
-
+  loading: '~/components/Globals/Loader.vue',
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: 'http://localhost:5000/api'
@@ -92,8 +92,5 @@ export default {
       callback: '/register',
       home: '/'
     }
-  },
-  router: {
-
   }
 }
