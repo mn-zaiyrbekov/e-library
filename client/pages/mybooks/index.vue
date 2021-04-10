@@ -72,6 +72,12 @@ export default {
   },
   created() {
     this.fetchBooksUser(this.$auth.user._id)
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 1500)
+    })
   }
 }
 </script>
