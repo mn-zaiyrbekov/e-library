@@ -1,4 +1,5 @@
 const BooksGenre = require('../models/booksgenre')
+const Books = require('../models/books')
 
 exports.addBooksGenre = (req, res) => {
   const genre = req.body
@@ -33,11 +34,18 @@ exports.getAllBookGenre = (req, res) => {
     BooksGenre.find()
     .then(response => {
       res.status(200).json({
-        success: true,
         message: 'Вывод всех жанров',
+        success: true,
         subject: response
       })
     })
+    .catch(err => {
+      res.status(400).json({
+        message: 'Ошибка при выводе данных',
+        success: false,
+        error: err
+      })
+    })    
   }catch(e) {
     res.status(400).json({
       success: false,
@@ -68,6 +76,20 @@ exports.getOneBookGenre = (req, res) => {
     res.status(400).json({
       success: false,
       message: 'Произошла ошибка при выводе одного жанра',
+      error: e
+    })
+  }
+}
+
+
+exports.countBooksByGenre = async (req, res) => {
+  try{
+  
+    
+  }catch(e) {
+    res.status(400).json({
+      success: false,
+      message: 'Произошла неизвестная ошибка при подсчетет данных...',
       error: e
     })
   }

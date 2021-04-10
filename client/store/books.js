@@ -8,7 +8,8 @@ export const state = () => ({
   bookOneGenre: {},
   bookOneGenreError: null,
   booksByGenre: [],
-  bookByGenreError: null
+  bookByGenreError: null,
+  booksCounting: []
 })
 
 export const getters = {
@@ -16,7 +17,8 @@ export const getters = {
   getOneBook: ( state ) => state.book,
   getBookGenre: ( state ) => state.bookGenre,
   getOneBookGenre: ( state ) => state.bookOneGenre,
-  getBooksByGenre: ( state ) => state.booksByGenre
+  getBooksByGenre: ( state ) => state.booksByGenre,
+  getAllCounting: ( state ) => state.booksCounting
 }
 
 export const mutations = {
@@ -61,6 +63,9 @@ export const mutations = {
   },
   set_book_by_genre_error(state, error) {
     state.bookByGenreError = error
+  },
+  set_count_book_genre( state, count ) {
+    state.booksCounting = count
   }
 }
 
