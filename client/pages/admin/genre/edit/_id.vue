@@ -9,7 +9,7 @@
       <v-col cols="8" md="4">
         <v-form @submit.prevent="submitForm">
           <v-text-field
-            v-model="genreValue.name"
+            v-model="genre.name"
             label="Название жанра"
           >
           </v-text-field>
@@ -33,21 +33,41 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import VcardTitle from '@/components/Globals/VcardTitle'
 export default {
   layout: 'adminlayout',
   components: { VcardTitle },
   data() {
     return {
-      genreValue: {
-        name: ''
+      errors: null
+    }
+  },
+  computed: {
+    ...mapGetters({
+      genre: 'admin/getOneBookGenre'
+    })
+  },
+  methods: {
+    ...mapActions({
+      fetchGenre: 'admin/getOneGenreBook'
+    }),
+    async submitForm() {
+      const newGenre = this.genre
+      try{
+        const res = await this.$axios.put(`/booksgenre/${this.genre._id}`, newGenre)
+        if (res.data.success) {
+          this.$router.push('/admin/genre')
+        }else{
+          this.errors = res.data.error
+        }
+      }catch(e) {
+        this.errors = e
       }
     }
   },
-  methods: {
-    async submitForm() {
-      alert(this.genreValue.name)
-    }
+  created() {
+    this.fetchGenre( { idGenre: this.$route.params.id } )
   }
 }
 </script>

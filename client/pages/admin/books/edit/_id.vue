@@ -69,7 +69,7 @@
 import { mapGetters, mapActions } from 'vuex'
   export default {
     name: 'dynamocpage',
-    layout: 'admin',
+    layout: 'adminlayout',
     head() {
       return {
         title: `Редактирование ${this.book.booksTitle}`

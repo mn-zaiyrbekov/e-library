@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { addBooksGenre, getAllBookGenre, getOneBookGenre, countBooksByGenre } = require('../controllers/booksgenre.controller')
+const { addBooksGenre, getAllBookGenre, getOneBookGenre, updateGenreBook } = require('../controllers/booksgenre.controller')
 
 router.route('/')
   .post(addBooksGenre)
@@ -7,4 +7,5 @@ router.route('/')
 
 router.route('/:id')
   .get(getOneBookGenre)  
+  .put(updateGenreBook)
 module.exports = router

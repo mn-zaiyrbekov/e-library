@@ -80,6 +80,25 @@ exports.getOneBookGenre = (req, res) => {
     })
   }
 }
+exports.updateGenreBook = (req, res) => {
+  const idGenre = req.params.id
+  const body = req.body
+  try{
+    BooksGenre.findByIdAndUpdate(idGenre, body)
+    .then(response => {
+      res.status(200).json({
+        message: 'Отредактировано',
+        success: true
+      })
+    })
+  }catch(e) {
+    res.status(400).json({
+      message: 'Что-то пошло не так..',
+      success: false,
+      error: e
+    })
+  }
+}
 
 exports.editBookGenre = (req, res) => {
   const newGenre = req.body

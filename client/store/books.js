@@ -6,7 +6,6 @@ export const state = () => ({
   booksGenreError: null,
   bookGenre: [],
   bookOneGenre: {},
-  bookOneGenreError: null,
   booksByGenre: [],
   bookByGenreError: null,
   booksCounting: []
@@ -48,9 +47,6 @@ export const mutations = {
   },
   set_book_genre_error(state, error) {
     state.booksGenreError = error
-  },
-  set_book_one_genre_error(state, error) {
-    state.bookOneGenreError = error
   },
   set_book_by_genre(state, books) {
     state.booksByGenre = books

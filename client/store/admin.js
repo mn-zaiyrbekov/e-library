@@ -3,6 +3,7 @@ export const state = () => ({
   // counting: [],
   // countingError: null
   bookOneGenre: {},
+  bookOneGenreError: null,
 })
 
 export const getters = {
@@ -21,6 +22,9 @@ export const mutations = {
   // }
   set_one_book_genre(state, genre) {
     state.bookOneGenre = genre
+  },
+  set_book_one_genre_error(state, error) {
+    state.bookOneGenreError = error
   },
 }
 
