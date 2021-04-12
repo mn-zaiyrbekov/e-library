@@ -1,16 +1,13 @@
 <template>
   <v-overlay v-if="loading" :value="overlay" color="#000">
-    <v-img
-     src="logo.png"
-      max-width="140"
-      min-width="140" 
-    >
-    </v-img>
+    <Logo />
   </v-overlay>
 </template>
 
 <script>
+import Logo from '@/components/Globals/Logo.vue'
 export default {
+  components: { Logo },
   data: () => ({
     loading: false,
     value: 0,
