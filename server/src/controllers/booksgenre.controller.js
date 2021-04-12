@@ -81,6 +81,16 @@ exports.getOneBookGenre = (req, res) => {
   }
 }
 
+exports.editBookGenre = (req, res) => {
+  const newGenre = req.body
+  console.log(newGenre)
+  return
+  try{
+
+  }catch(e) {
+
+  }
+}
 
 exports.countBooksByGenre = async (req, res) => {
   try{

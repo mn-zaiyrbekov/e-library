@@ -22,6 +22,11 @@
             "a benevolent smile"
           </div>
         </v-card-text>
+        <v-card-actions>
+          <v-btn color="pink lighten-5" :to="`/admin/genre/edit/${genre._id}`">
+            <v-icon title="редактировать" color="deep-purple lighten-1">mdi-pencil</v-icon>
+          </v-btn>
+        </v-card-actions>
       </v-card>
     </v-col>
   </v-row>
