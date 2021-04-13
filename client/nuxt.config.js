@@ -3,7 +3,7 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '[Beta 0.1] %s - Научная библиотека имени. Касыма Тыныстанова',
+    titleTemplate: '[Beta 0.5] %s - Научная библиотека имени. Касыма Тыныстанова',
     title: 'Главная',
     meta: [
       { charset: 'utf-8' },
@@ -44,7 +44,7 @@ export default {
   loading: '~/components/Globals/Loader.vue',
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://e-lib.server.libraryiksu.kg/api'
+    baseURL: 'http://localhost:5000/api'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

@@ -16,9 +16,20 @@ dotenv.config({path: path.resolve(__dirname, '.env')})
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(cors())
 app.use(passport.initialize())
 require('./passport')(passport)
+// #### Cors Configuration
+const whiteLists = ['https://elib.libraryiksu.kg/', 'http://localhost:3000']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whiteLists.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Недостаточно прав для использование данного ресурса!'))
+    }
+  }
+}
+app.use(cors(corsOptions))
 // app.use(cookieParser(process.env.SECRET))
 
 //######## DEVELOPMENT MDOE
