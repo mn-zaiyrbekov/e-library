@@ -17,9 +17,7 @@
       </v-card-title>
 
       <v-card-text>
-        <v-row
-          align="center"
-        >
+        <v-row>
           <v-card-text>Ваша оценка:</v-card-text>
           <v-rating
             v-model="ratingValue"
