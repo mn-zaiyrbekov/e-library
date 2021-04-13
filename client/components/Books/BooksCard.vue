@@ -16,7 +16,7 @@
         <v-clamp autoresize :max-lines="1">{{title}}</v-clamp>
       </v-card-title>
 
-      <v-card-text class="pl-0">
+      <v-card-text class="pl-4">
         <v-row
           align="center"
           class="mx-0"

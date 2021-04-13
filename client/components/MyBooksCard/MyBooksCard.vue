@@ -19,9 +19,8 @@
       <v-card-text>
         <v-row
           align="center"
-          class="mx-0"
         >
-          <v-card-text class="px-0">Ваша оценка:</v-card-text>
+          <v-card-text>Ваша оценка:</v-card-text>
           <v-rating
             v-model="ratingValue"
             color="pink"
