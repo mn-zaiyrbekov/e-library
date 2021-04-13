@@ -1,6 +1,6 @@
 <template>
   <div>
-    Книги категории
+    <VcardTitle title="Категория книг" />
     <v-row>
       <v-col
         cols="12"
@@ -26,10 +26,11 @@
 </template>
 
 <script>
-import BooksCard from '@/components/Books/BooksCard'
 import { mapGetters, mapActions } from 'vuex'
+import BooksCard from '@/components/Books/BooksCard'
+import VcardTitle from '@/components/Globals/VcardTitle'
 export default {
-  components: { BooksCard },
+  components: { BooksCard, VcardTitle },
   computed: {
     ...mapGetters({
       books: 'books/getBooksByGenre'
@@ -52,6 +53,6 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
