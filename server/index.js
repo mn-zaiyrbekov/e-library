@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(passport.initialize())
 require('./passport')(passport)
 // #### Cors Configuration
-const whiteLists = ['https://elib.libraryiksu.kg/', 'http://localhost:3000']
+const whiteLists = ['https://elib.libraryiksu.kg', 'http://localhost:3000']
 const corsOptions = {
   origin: function (origin, callback) {
     if (whiteLists.indexOf(origin) !== -1) {
