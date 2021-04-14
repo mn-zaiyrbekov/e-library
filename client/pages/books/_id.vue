@@ -45,7 +45,7 @@
             </v-list-item>
             <v-list-item class="pl-0">
               <v-icon class="mr-2">mdi-calendar-check</v-icon>
-              <v-list-item-subtitle>добавлен: {{format_Date().format('MMM D Y')}}</v-list-item-subtitle>
+              <v-list-item-subtitle>добавлен: {{format_Date(book.createDate).format('M/D/Y, h:mm:ss')}}</v-list-item-subtitle>
             </v-list-item>
             <v-list-item class="pl-0 mb-3">
               Аннотация: {{book.booksDesc}}
@@ -109,8 +109,8 @@ export default {
       setBooksForUser: 'user/setBooksForUser',
       getOneBookGenre: 'admin/getOneGenreBook'
     }),
-    format_Date() {
-      return moment()
+    format_Date(date) {
+      return moment(date)
     },
     async setUserBooks() {
       this.snackbar = true
@@ -130,6 +130,12 @@ export default {
     this.fetchOneBook( { id:this.$route.params.id } )
     this.getOneBookGenre({
       idGenre: this.book.booksGenre
+    })
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.$nuxt.$loading.start()
+      setTimeout(() => this.$nuxt.$loading.finish(), 1500)
     })
   }
 }
