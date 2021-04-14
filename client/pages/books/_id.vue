@@ -10,7 +10,7 @@
             max-height="440"
           ></v-img>
           <v-card-actions class="mt-3">
-          <v-btn z-index="10" link :href="`${book.booksLink}`" color="pink lighten-5" >
+          <v-btn z-index="10" link :href="`${book.booksLink}`" color="pink lighten-5" target="_blank">
             <v-icon title="читать онлайн" color="deep-purple lighten-1">mdi-book-open</v-icon>
           </v-btn>
             <v-btn

@@ -26,7 +26,7 @@
             </v-list-item-subtitle>
             <v-list-item-subtitle class="py-3 pl-1">
               <v-icon small class="mr-3 ">mdi-comment-account</v-icon>
-              Зарегистрирован: <span class="ml-2">{{format_Date().format('MMM D Y')}}</span>
+              Зарегистрирован: <span class="ml-2">{{format_Date($auth.user.createDate).format('MMM D Y')}}</span>
             </v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
@@ -39,8 +39,8 @@
 import moment from 'moment'
   export default {
     methods: {
-      format_Date() {
-        return moment()
+      format_Date(date) {
+        return moment(date)
       },
     }
   }
