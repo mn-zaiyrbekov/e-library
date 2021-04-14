@@ -107,7 +107,7 @@ export default {
     ...mapActions({
       fetchOneBook: 'books/getOneBook',
       setBooksForUser: 'user/setBooksForUser',
-      getOneBookGenre: 'books/getOneGenreBook'
+      getOneBookGenre: 'admin/getOneGenreBook'
     }),
     format_Date() {
       return moment()
@@ -135,6 +135,4 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

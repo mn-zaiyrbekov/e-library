@@ -60,7 +60,7 @@ export default {
     idBook: { type: String }, title: { type: String, default: '' },
     description: { type: String, default: '' },
     bookAuthor: { type: String, default: '' },
-    bookGenre: { type: Array, default: '' },
+    bookGenre: { type: Array, default: [] },
     bookYear: { type: String }, bookImage: { type: String, default: '' },
     bookLink: { type: String, default: '' },
     rating: { type: Array }
