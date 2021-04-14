@@ -1,7 +1,11 @@
 <template>
-  <v-overlay v-if="loading" :value="overlay" color="#000">
-    <Logo />
-  </v-overlay>
+  <v-row>
+    <v-col md="6" cols="12">
+      <v-overlay v-if="loading" :value="overlay" color="#000">
+        <Logo />
+      </v-overlay>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
