@@ -126,7 +126,7 @@ export default {
       }
     }
   },
-  beforeCreated() {
+  created() {
     this.fetchOneBook( { id:this.$route.params.id } )
     this.getOneBookGenre({
       idGenre: this.book.booksGenre

@@ -4,28 +4,33 @@
       class="mx-auto my-12"
       max-width="300"
     >
-
       <v-img
-        width="220"
+        width="100%"
         height="280"
         :src="booksImage"
         class="mx-auto"
       ></v-img>
 
-      <v-card-title class="subtitle-1" :title="booksTitle">
-        <v-clamp autoresize :max-lines="1">{{booksTitle}}</v-clamp>
+      <v-card-title class="subtitle-1 purple darken-4" :title="booksTitle">
+        <v-clamp autoresize :max-lines="1" class="white--text">{{booksTitle}}</v-clamp>
       </v-card-title>
-
+        <v-card-text
+          class="my-2 caption"
+        >
+          <v-clamp autoresize :max-lines="2" :title="booksDesc">{{booksDesc}}</v-clamp>
+        </v-card-text>
       <v-card-text>
         <v-row>
           <v-card-text>Ваша оценка:</v-card-text>
           <v-rating
+            class="pl-2"
             v-model="ratingValue"
             color="pink"
             background-color="pink lighten-3"
             empty-icon="$ratingFull"
             hover
             large
+            small
             @input="setRating"
           ></v-rating>
         </v-row>

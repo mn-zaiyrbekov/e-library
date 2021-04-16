@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-card-actions>
     <v-rating
       v-model="bookRating"
       color="pink"
@@ -8,9 +8,12 @@
       half-increments
       hover
       readonly
-      large
+      small
     ></v-rating>
-  </div>
+    <span>
+      ( {{ bookRating }} )
+    </span>
+  </v-card-actions>
 </template>
 
 <script>
