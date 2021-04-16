@@ -2,8 +2,6 @@ export const state = () => ({
   // ######### For counting Books By Genre
   // counting: [],
   // countingError: null
-  bookOneGenre: {},
-  bookOneGenreError: null,
 })
 
 export const getters = {
@@ -36,6 +34,4 @@ export const actions = {
   //     commit('set_counting_error', e)
   //   }
   // }
-
-  
 }
