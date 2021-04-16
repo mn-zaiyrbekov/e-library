@@ -45,12 +45,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      genre: 'admin/getOneBookGenre'
+      genre: 'books/getOneBookGenre'
     })
   },
   methods: {
     ...mapActions({
-      fetchGenre: 'admin/getOneGenreBook'
+      fetchGenre: 'books/getOneGenreBook'
     }),
     async submitForm() {
       const newGenre = this.genre

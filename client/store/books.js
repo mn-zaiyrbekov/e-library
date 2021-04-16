@@ -15,7 +15,7 @@ export const getters = {
   getBooks: ( state ) => state.books,
   getOneBook: ( state ) => state.book,
   getBookGenre: ( state ) => state.bookGenre,
-  getOneBookGenre: ( state ) => state.bookOneGenre,
+  getOneGenreBook: ( state ) => state.bookOneGenre,
   getBooksByGenre: ( state ) => state.booksByGenre,
   getAllCounting: ( state ) => state.booksCounting
 }
@@ -53,7 +53,13 @@ export const mutations = {
   },
   set_book_by_genre_error(state, error) {
     state.bookByGenreError = error
-  }
+  },
+  set_one_book_genre(state, genre) {
+    state.bookOneGenre = genre
+  },
+  set_book_one_genre_error(state, error) {
+    state.bookOneGenreError = error
+  },
 }
 
 export const actions = {
@@ -137,7 +143,19 @@ export const actions = {
     }catch(e) {
       commit('set_book_by_genre_error', e)
     }
-  }
+  },
+  async getOneGenreBook( { commit }, { idGenre }) {
+    try{
+      const response = await this.$axios.get(`/booksgenre/${idGenre}`)
+      if(response.data.success) {
+        commit('set_one_book_genre', response.data.subject)
+      }else{
+        commit('set_book_one_genre_error', response.error)
+      }
+    }catch(e) {
+      commit('set_book_one_genre_error', e)
+    }
+  },
 }
 
 

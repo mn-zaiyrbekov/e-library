@@ -9,7 +9,6 @@ export const state = () => ({
 export const getters = {
   // ######### For counting Books By Genre
   // getAllCounting: ( state ) => state.counting
-  getOneBookGenre: ( state ) => state.bookOneGenre,
 }
 
 export const mutations = {
@@ -20,12 +19,7 @@ export const mutations = {
   // set_counting_error(state, err) {
   //   state.countingError = err
   // }
-  set_one_book_genre(state, genre) {
-    state.bookOneGenre = genre
-  },
-  set_book_one_genre_error(state, error) {
-    state.bookOneGenreError = error
-  },
+
 }
 
 export const actions = {
@@ -43,16 +37,5 @@ export const actions = {
   //   }
   // }
 
-  async getOneGenreBook( { commit }, { idGenre }) {
-    try{
-      const response = await this.$axios.get(`/booksgenre/${idGenre}`)
-      if(response.data.success) {
-        commit('set_one_book_genre', response.data.subject)
-      }else{
-        commit('set_book_one_genre_error', response.error)
-      }
-    }catch(e) {
-      commit('set_book_one_genre_error', e)
-    }
-  },
+  
 }

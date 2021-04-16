@@ -100,14 +100,14 @@ export default {
   computed: {
     ...mapGetters({
       book: 'books/getOneBook',
-      getGenre: 'books/getOneBookGenre'
+      getGenre: 'books/getOneGenreBook'
     })
   },
   methods: {
     ...mapActions({
       fetchOneBook: 'books/getOneBook',
       setBooksForUser: 'user/setBooksForUser',
-      getOneBookGenre: 'admin/getOneGenreBook'
+      getOneBookGenre: 'books/getOneGenreBook'
     }),
     format_Date(date) {
       return moment(date)
