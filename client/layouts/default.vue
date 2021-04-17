@@ -13,6 +13,7 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
+      <Search />
       <v-spacer />
       <div
         class="white--text py-1 px-4"
@@ -74,6 +75,7 @@
 <script>
 import LeftBar from '@/components/Globals/LeftBar'
 import UserBar from '@/components/Globals/UserBar'
+import Search from '@/components/Globals/Search'
 export default {
   name: 'defaultLayouts',
   data () {
@@ -88,9 +90,6 @@ export default {
       title: '',
     }
   },
-  components: {
-    LeftBar,
-    UserBar
-  }
+  components: { LeftBar, UserBar, Search }
 }
 </script>

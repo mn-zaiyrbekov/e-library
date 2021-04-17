@@ -49,7 +49,6 @@
               item-text="name"
               item-value="_id"
               label="Выберите жанр"
-              multiple            
             ></v-select>
           </div>
 
