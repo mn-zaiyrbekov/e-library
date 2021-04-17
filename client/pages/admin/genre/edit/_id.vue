@@ -45,7 +45,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      genre: 'books/getOneBookGenre'
+      genre: 'books/getOneGenreBook'
     })
   },
   methods: {
