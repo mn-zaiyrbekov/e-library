@@ -5,12 +5,12 @@
     :loading="searchLoading"
     :search-input.sync="search"
     :items="items"
-    flat
     hide-no-data
     hide-details
     label="Введите название книги"
     solo-inverted
     cache-items
+    @input="getId"
   ></v-autocomplete>
 </template>
 
@@ -39,6 +39,9 @@
           })
         }
         this.searchLoading = false
+      },
+      getId() {
+        alert(this.items)
       }
     }
   }
