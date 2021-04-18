@@ -248,3 +248,39 @@ exports.setBooksRating = async (req, res) => {
     })
   }
 }
+
+
+exports.searching = (req, res) => {
+  const searchItem = req.body.search
+  const queryOptions = {
+    $and: [{
+      booksTitle: {
+        '$regex': '^' + searchItem,
+        '$options': 'i'
+      }
+    }]
+  }
+  try{
+    Books.find(queryOptions)
+    .then(data => {
+      res.status(200).json({
+        message: `Запросы по поиску '${searchItem}'`,
+        success: true,
+        subject: data
+      })
+    })
+    .catch(error => {
+      res.status(422).json({
+        message: `Запросы по поиску '${searchItem}' ничего не найдено`,
+        success: false,
+        error: error
+      })
+    })
+  }catch(e) {
+    res.status(400).json({
+      message: 'Произошла ошибка при поске книги',
+      success: false,
+      error: e
+    })
+  }
+}

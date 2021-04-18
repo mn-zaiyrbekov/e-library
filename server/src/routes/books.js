@@ -2,7 +2,7 @@ const router = require('express').Router()
 const { 
   getUserBooks, deleteUserBook, setUserBook, getAllBooks, 
   addNewBook, updateBook, getOneBook, deleteBook,
-  setBooksRating, getBookForGenre
+  setBooksRating, getBookForGenre, searching
 } = require('../controllers/books.controller')
 
 router.route('/')
@@ -27,4 +27,6 @@ router.route('/user/:id')
 router.route('/book/rating/:id')
   .post(setBooksRating)
   
+router.route('/book/search')
+  .post(searching)
 module.exports = router
