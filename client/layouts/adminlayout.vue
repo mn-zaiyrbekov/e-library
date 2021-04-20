@@ -27,9 +27,11 @@
         class="brown"
         fixed
         app
-        dark
       >
-        <v-btn class="ml-auto indigo" to="/">На главную</v-btn>
+        <v-btn class="ml-auto pink lighten-5 caption" to="/">
+          <v-icon class="mr-3">mdi-home</v-icon>
+          На главную
+        </v-btn>
       </v-app-bar>
     <v-main class="pt-8 mt-4">
       <v-container
