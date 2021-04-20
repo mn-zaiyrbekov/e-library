@@ -1,7 +1,7 @@
 <template>
   <v-autocomplete
     v-model="select"
-    class="mx-4"
+    class="mx-4 d-none d-sm-flex"
     :loading="searchLoading"
     :search-input.sync="search"
     :items="items"

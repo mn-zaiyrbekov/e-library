@@ -13,7 +13,7 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title v-text="title" />
-      <Search />
+      <Search/>
       <v-spacer />
       <div
         class="white--text py-1 px-4"
@@ -42,13 +42,8 @@
       </div>
       <div
         class="white--text py-1 px-4"
-        v-if="$auth.user"
+        v-else
       >
-      <v-avatar color="indigo" class="mr-2">
-        <v-icon dark>
-          mdi-account-circle
-        </v-icon>
-      </v-avatar>  
        {{$auth.user.name}}      
       </div>
 
