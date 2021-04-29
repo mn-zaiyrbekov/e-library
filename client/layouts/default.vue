@@ -12,7 +12,7 @@
       dark
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
+      <!-- <v-toolbar-title v-text="title" /> -->
       <Search/>
       <v-spacer />
       <div
@@ -44,7 +44,7 @@
         class="white--text py-1 px-4"
         v-else
       >
-       {{$auth.user.name}}      
+       {{$auth.user.name}}
       </div>
 
       <v-btn

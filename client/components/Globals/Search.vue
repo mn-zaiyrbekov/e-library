@@ -1,17 +1,19 @@
 <template>
-  <v-autocomplete
-    v-model="select"
-    class="mx-4 d-none d-sm-flex"
-    :loading="searchLoading"
-    :search-input.sync="search"
-    :items="items"
-    hide-no-data
-    hide-details
-    label="Введите название книги"
-    solo-inverted
-    cache-items
-    @input="getId"
-  ></v-autocomplete>
+  <div>
+    <v-autocomplete
+      v-model="select"
+      :loading="searchLoading"
+      :search-input.sync="search"
+      :items="items"
+      hide-no-data
+      hide-details
+      label="Введите название книги"
+      class="mx-4"
+      solo-inverted
+      cache-items
+    >
+    </v-autocomplete>
+  </div>
 </template>
 
 <script>
@@ -39,9 +41,6 @@
           })
         }
         this.searchLoading = false
-      },
-      getId() {
-        alert(this.items)
       }
     }
   }
