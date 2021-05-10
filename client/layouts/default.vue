@@ -13,7 +13,11 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <!-- <v-toolbar-title v-text="title" /> -->
-      <Search/>
+      <v-row>
+        <v-col class="col-12 md-6">
+          <Search/>
+        </v-col>
+      </v-row>
       <v-spacer />
       <div
         class="white--text py-1 px-4"
