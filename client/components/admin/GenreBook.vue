@@ -18,8 +18,7 @@
           <!-- <p
           >Количество книг в данном жанре {{counting}}</p> -->
           <div class="text--primary">
-            well meaning and kindly.<br>
-            "a benevolent smile"
+            Количество книг в данном жанре [  ]
           </div>
         </v-card-text>
         <v-card-actions>
