@@ -50,9 +50,6 @@
         }
         this.searchLoading = false
       }
-    },
-    mounted() {
-      console.log(this.items)
     }
   }
 </script>
